@@ -1,0 +1,15 @@
+﻿* {
+    line-height: 100%;
+    font-size: 14px;
+}
+.print-frame {
+    border: dashed 1px #000;
+    padding: 10px 20px;
+    padding-bottom: 50px;
+    clear: both;
+    float: left;
+}
+table {
+    clear: both;
+    width: 100%;
+}

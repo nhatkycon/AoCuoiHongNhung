@@ -1,0 +1,21 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/lib/master/Admin_Blank.master" AutoEventWireup="true" CodeFile="Admin_User.master.cs" Inherits="lib_master_Admin_User" %>
+
+<%@ Register Src="~/lib/ui/HeThong/Menu.ascx" TagPrefix="uc1" TagName="Menu" %>
+
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <asp:ContentPlaceHolder id="head" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <uc1:Menu runat="server" ID="Menu" />
+    <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+    <%--<div id="MsgCenter">
+        <a class="Msg-Item">            
+            <strong>Nguyễn Xuân Linh</strong> thêm mới phiếu dịch vụ <strong>00000014</strong>
+        </a>
+        <a class="Msg-Item">
+            <strong>Nguyễn Công Hòa</strong> thêm việc mới <strong>00000014</strong>
+        </a>
+    </div>--%>
+</asp:Content>
+

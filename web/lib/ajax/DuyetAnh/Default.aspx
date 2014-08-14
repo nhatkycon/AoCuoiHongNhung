@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="lib_ajax_DuyetAnh_Default" %><%@ Register Src="~/lib/ui/DuyetAnh/templates/Item-Edit.ascx" TagPrefix="uc1" TagName="ItemEdit" %><uc1:ItemEdit runat="server" ID="ItemEdit" />

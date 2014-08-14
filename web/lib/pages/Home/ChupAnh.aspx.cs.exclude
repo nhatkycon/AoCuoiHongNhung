@@ -1,0 +1,20 @@
+﻿using System;
+using docsoft;
+using docsoft.entities;
+using linh.core.dal;
+
+public partial class lib_pages_Home_ChupAnh : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        var d = DateTime.Now;
+        var cuoiThangTruoc = new DateTime(d.Year, d.Month, 1).AddDays(-1);
+        var dauThangSau = d.AddMonths(6);
+        using (var con = DAL.con())
+        {
+
+            var list = SuKienDal.SelectPhieuDichVuForCalendarChupAnh(con, cuoiThangTruoc, dauThangSau, Security.UserId.ToString());
+            LichThang.List = list;
+        }
+    }
+}
