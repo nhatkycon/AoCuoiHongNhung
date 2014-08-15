@@ -207,8 +207,8 @@ public partial class lib_ajax_PhieuBaoHong_Default : basePage
                 #endregion
             case "search":
                 #region search
-                var list = ChoThueVayDal.SelectAll();
-                rendertext(JavaScriptConvert.SerializeObject(list), "text/javascript");
+                var pg = PhieuBaoHongDal.pagerNormal(null, false, "PBH_Ma desc", q, 10);
+                rendertext(JavaScriptConvert.SerializeObject(pg.List), "text/javascript");
                 break;
                 #endregion
             default: break;

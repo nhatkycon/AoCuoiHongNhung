@@ -2,7 +2,7 @@
 <%@ Import Namespace="linh.common" %>
 <tr>
     <td>
-        <a href="/lib/pages/ThuChi/Add-Thu.aspx?ID=<%=Item.ID %>&ret=<%=Server.UrlEncode(Request.Url.PathAndQuery) %>">
+        <a href="<%=Target %><%=Item.ID %>&ret=<%=Server.UrlEncode(Request.Url.PathAndQuery) %>">
             <%=Item.Ma %>            
         </a>
     </td>

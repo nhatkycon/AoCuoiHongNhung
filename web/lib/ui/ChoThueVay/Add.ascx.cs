@@ -9,6 +9,7 @@ public partial class lib_ui_ChoThueVay_Add : System.Web.UI.UserControl
     public string Ret { get; set; }
     public string PDV_ID { get; set; }
     public ChoThueVay Item { get; set; }
+    public List<ThuChi> ListThuChi { get; set; }
     public List<PhieuXuatNhapSanPhamChiTiet> List { get; set; }
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -26,5 +27,7 @@ public partial class lib_ui_ChoThueVay_Add : System.Web.UI.UserControl
         ListEdit.PID = Item.ID.ToString();
         ListEdit.List = List;
 
+        ListPhieuDichVu.List = ListThuChi;
+        ListPhieuDichVu.Target = "/lib/pages/ThuChi/Add-Thu.aspx?ID=";
     }
 }

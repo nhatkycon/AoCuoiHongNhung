@@ -10,6 +10,10 @@ public partial class lib_pages_ThuChi_Add_Thu : System.Web.UI.Page
         var id = Request["ID"];
         var khId = Request["KH_ID"];
         var pdvId = Request["PDV_ID"];
+        var ctvId = Request["CTV_ID"];
+        var pgvId = Request["PGV_ID"];
+        var pbhId = Request["PBH_ID"];
+
         using (var con = DAL.con())
         {
             if (string.IsNullOrEmpty(id))
@@ -34,8 +38,32 @@ public partial class lib_pages_ThuChi_Add_Thu : System.Web.UI.Page
                     Item.P_Ten = kh.Ten;
                     Item.P_ID = kh.ID;
                 }
-                
 
+                if (ctvId != null && ctvId.Length >= 36)
+                {
+                    ctvId = ctvId.Substring(ctvId.LastIndexOf(',') + 1);
+                    var ctv = ChoThueVayDal.SelectById(con, new Guid(ctvId));
+                    Item.CTV_ID = ctv.ID;
+                    Item.CTV_Ma = ctv.Ma;
+                    var kh = KhachHangDal.SelectById(ctv.KH_ID, con);
+                    Item.P_Ten = kh.Ten;
+                    Item.P_ID = kh.ID;
+                }
+
+                if (pgvId != null && pgvId.Length >= 36)
+                {
+                    pgvId = pgvId.Substring(pgvId.LastIndexOf(',') + 1);
+                    var pgv = PhieuGiatVayDal.SelectById(con, new Guid(pgvId));
+                    Item.PGV_ID = pgv.ID;
+                    Item.PGV_Ma = pgv.Ma;
+                }
+                if (pbhId != null && pbhId.Length >= 36)
+                {
+                    pbhId = pbhId.Substring(pgvId.LastIndexOf(',') + 1);
+                    var pbh = PhieuBaoHongDal.SelectById(con, new Guid(pbhId));
+                    Item.PBH_ID = pbh.ID;
+                    Item.PBH_Ma = pbh.Ma;
+                }
             }
             else
             {

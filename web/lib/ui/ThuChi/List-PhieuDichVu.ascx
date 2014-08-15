@@ -23,7 +23,7 @@
     </thead>
     <asp:Repeater runat="server" ID="rpt">
         <ItemTemplate>
-            <uc1:ItemPhieuDichVu runat="server" ID="ItemPhieuDichVu" Item='<%# Container.DataItem %>' />   
+            <uc1:ItemPhieuDichVu Target="<%# Target %>" runat="server" ID="ItemPhieuDichVu" Item='<%# Container.DataItem %>' />   
         </ItemTemplate>
     </asp:Repeater>    
 </table>

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using docsoft;
 using docsoft.entities;
 
 public partial class lib_ui_PhieuDichVu_Add : System.Web.UI.UserControl
@@ -31,5 +30,6 @@ public partial class lib_ui_PhieuDichVu_Add : System.Web.UI.UserControl
         BaiHatList.Item = Item;
 
         ListPhieuDichVu.List = ListThuChi;
+        ListPhieuDichVu.Target = "/lib/pages/ThuChi/Add-Thu.aspx?ID=";
     }
 }

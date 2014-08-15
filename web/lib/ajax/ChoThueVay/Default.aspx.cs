@@ -218,8 +218,8 @@ public partial class lib_ajax_ChoThueVay_Default : basePage
                 #endregion
                 case "search":
                 #region search
-                var list = ChoThueVayDal.SelectAll();
-                rendertext(JavaScriptConvert.SerializeObject(list), "text/javascript");
+                var pg = ChoThueVayDal.pagerNormal(DAL.con(), null, false, "CTV_Ma desc", q, 10,null,null);
+                rendertext(JavaScriptConvert.SerializeObject(pg.List), "text/javascript");
                 break;
                 #endregion
                 default: break;

@@ -261,7 +261,14 @@ namespace docsoft.entities
         public string NhanVien_Ten { get; set; }
         public string HH_Ten { get; set; }
         public string LYDO_Ten { get; set; }
-       
+        public string Ten
+        {
+            get { return MaStr; }
+        }
+        public string Hint
+        {
+            get { return MaStr; }
+        }
         public string MaStr
         {
             get { return Lib.FormatMa(Ma); }
@@ -650,7 +657,14 @@ namespace docsoft.entities
         { }
         #endregion
         #region Customs properties
-
+        public string Ten
+        {
+            get { return MaStr; }
+        }
+        public string Hint
+        {
+            get { return MaStr; }
+        }
         public string NguoiTao_Ten { get; set; }
         public string NguoiCapNhat_Ten { get; set; }
         public string ThuKho_Ten { get; set; }
@@ -1128,6 +1142,14 @@ namespace docsoft.entities
         #endregion
 
         #region Customs properties
+        public string Ten
+        {
+            get { return MaStr; }
+        }
+        public string Hint
+        {
+            get { return MaStr; }
+        }
         public string Url
         {
             get { return string.Format("/lib/pages/GiatLa/Add.aspx?ID={0}", ID); }

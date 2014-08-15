@@ -39,6 +39,9 @@ namespace docsoft.entities
         public Guid PDV_ID { get; set; }
         public Guid CTV_ID { get; set; }
         public Guid PGV_ID { get; set; }
+        public Guid PBH_ID { get; set; }
+        public Boolean Xoa { get; set; }
+        public Boolean XoaAdm { get; set; }
         #endregion
         #region Contructor
         public ThuChi()
@@ -61,6 +64,7 @@ namespace docsoft.entities
 
         public int CTV_Ma { get; set; }
         public int PGV_Ma { get; set; }
+        public int PBH_Ma { get; set; }
         public string CTV_MaStr
         {
             get { return Lib.FormatMa(CTV_Ma); }
@@ -68,6 +72,10 @@ namespace docsoft.entities
         public string PGV_MaStr
         {
             get { return Lib.FormatMa(PGV_Ma); }
+        }
+        public string PBH_MaStr
+        {
+            get { return Lib.FormatMa(PBH_Ma); }
         }
         public string Ma
         {
@@ -99,7 +107,7 @@ namespace docsoft.entities
         public static ThuChi Insert(ThuChi item)
         {
             var Item = new ThuChi();
-            var obj = new SqlParameter[22];
+            var obj = new SqlParameter[25];
             obj[0] = new SqlParameter("TC_ID", item.ID);
             obj[1] = new SqlParameter("TC_NDTC_ID", item.NDTC_ID);
             obj[2] = new SqlParameter("TC_CQ_ID", item.CQ_ID);
@@ -143,6 +151,9 @@ namespace docsoft.entities
             obj[19] = new SqlParameter("TC_PDV_ID", item.PDV_ID);
             obj[20] = new SqlParameter("TC_CTV_ID", item.CTV_ID);
             obj[21] = new SqlParameter("TC_PGV_ID", item.PGV_ID);
+            obj[22] = new SqlParameter("TC_PBH_ID", item.PBH_ID);
+            obj[23] = new SqlParameter("TC_Xoa", item.Xoa);
+            obj[24] = new SqlParameter("TC_XoaAdm", item.XoaAdm);
 
             using (IDataReader rd = SqlHelper.ExecuteReader(DAL.con(), CommandType.StoredProcedure, "sp_tblThuChi_Insert_InsertNormal_linhnx", obj))
             {
@@ -157,7 +168,7 @@ namespace docsoft.entities
         public static ThuChi Update(ThuChi item)
         {
             var Item = new ThuChi();
-            var obj = new SqlParameter[22];
+            var obj = new SqlParameter[25];
             obj[0] = new SqlParameter("TC_ID", item.ID);
             obj[1] = new SqlParameter("TC_NDTC_ID", item.NDTC_ID);
             obj[2] = new SqlParameter("TC_CQ_ID", item.CQ_ID);
@@ -201,6 +212,9 @@ namespace docsoft.entities
             obj[19] = new SqlParameter("TC_PDV_ID", item.PDV_ID);
             obj[20] = new SqlParameter("TC_CTV_ID", item.CTV_ID);
             obj[21] = new SqlParameter("TC_PGV_ID", item.PGV_ID);
+            obj[22] = new SqlParameter("TC_PBH_ID", item.PBH_ID);
+            obj[23] = new SqlParameter("TC_Xoa", item.Xoa);
+            obj[24] = new SqlParameter("TC_XoaAdm", item.XoaAdm);
 
             using (IDataReader rd = SqlHelper.ExecuteReader(DAL.con(), CommandType.StoredProcedure, "sp_tblThuChi_Update_UpdateNormal_linhnx", obj))
             {
@@ -382,6 +396,18 @@ namespace docsoft.entities
             {
                 Item.PGV_ID = (Guid)(rd["TC_PGV_ID"]);
             }
+            if (rd.FieldExists("TC_PBH_ID"))
+            {
+                Item.PBH_ID = (Guid)(rd["TC_PBH_ID"]);
+            }
+            if (rd.FieldExists("TC_Xoa"))
+            {
+                Item.Xoa = (Boolean)(rd["TC_Xoa"]);
+            }
+            if (rd.FieldExists("TC_XoaAdm"))
+            {
+                Item.XoaAdm = (Boolean)(rd["TC_XoaAdm"]);
+            }
 
             if (rd.FieldExists("CTV_Ma"))
             {
@@ -396,6 +422,10 @@ namespace docsoft.entities
             if (rd.FieldExists("PDV_Ma"))
             {
                 Item.PDV_Ma = (Int32)(rd["PDV_Ma"]);
+            }
+            if (rd.FieldExists("PBH_Ma"))
+            {
+                Item.PBH_Ma = (Int32)(rd["PBH_Ma"]);
             }
             if (rd.FieldExists("P_Ten"))
             {
@@ -522,7 +552,48 @@ namespace docsoft.entities
             }
             return List;
         }
-       
+        public static ThuChiCollection SelectByCtvId(SqlConnection con, Guid CTV_ID)
+        {
+            var List = new ThuChiCollection();
+            var obj = new SqlParameter[1];
+            obj[0] = new SqlParameter("CTV_ID", CTV_ID);
+            using (IDataReader rd = SqlHelper.ExecuteReader(con, CommandType.StoredProcedure, "sp_tblThuChi_Select_SelectByCtvId_linhnx", obj))
+            {
+                while (rd.Read())
+                {
+                    List.Add(getFromReader(rd));
+                }
+            }
+            return List;
+        }
+        public static ThuChiCollection SelectByPbhId(SqlConnection con, Guid PBH_ID)
+        {
+            var List = new ThuChiCollection();
+            var obj = new SqlParameter[1];
+            obj[0] = new SqlParameter("PBH_ID", PBH_ID);
+            using (IDataReader rd = SqlHelper.ExecuteReader(con, CommandType.StoredProcedure, "sp_tblThuChi_Select_SelectByPbhId_linhnx", obj))
+            {
+                while (rd.Read())
+                {
+                    List.Add(getFromReader(rd));
+                }
+            }
+            return List;
+        }
+        public static ThuChiCollection SelectByPgvId(SqlConnection con, Guid PGV_ID)
+        {
+            var List = new ThuChiCollection();
+            var obj = new SqlParameter[1];
+            obj[0] = new SqlParameter("PGV_ID", PGV_ID);
+            using (IDataReader rd = SqlHelper.ExecuteReader(con, CommandType.StoredProcedure, "sp_tblThuChi_Select_SelectByPgvId_linhnx", obj))
+            {
+                while (rd.Read())
+                {
+                    List.Add(getFromReader(rd));
+                }
+            }
+            return List;
+        }
         #endregion
     }
     #endregion

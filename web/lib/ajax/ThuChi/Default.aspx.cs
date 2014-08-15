@@ -28,6 +28,14 @@ public partial class lib_ajax_ThuChi_Default : basePage
         var XN_ID = Request["XN_ID"];
         var P_ID = Request["P_ID"];
         var PDV_ID = Request["PDV_ID"];
+        var CTV_ID = Request["CTV_ID"];
+        var PGV_ID = Request["PGV_ID"];
+        var PBH_ID = Request["PBH_ID"];
+        var Xoa = Request["Xoa"];
+        var XoaAdm = Request["XoaAdm"];
+
+        XoaAdm = string.IsNullOrEmpty(XoaAdm) ? "false" : "true";
+        Xoa = string.IsNullOrEmpty(Xoa) ? "false" : "true";
 
         var logged = Security.IsAuthenticated();
         var Id = Request["ID"];
@@ -80,7 +88,24 @@ public partial class lib_ajax_ThuChi_Default : basePage
                         var pdv = PhieuDichVuDal.SelectById(DAL.con(), item.PDV_ID);
                         item.P_ID = pdv.KH_ID;
                     }
-                    
+
+                    if (!string.IsNullOrEmpty(CTV_ID))
+                    {
+                        item.CTV_ID = new Guid(CTV_ID);
+                        var ctv = ChoThueVayDal.SelectById(DAL.con(), item.CTV_ID);
+                        item.P_ID = ctv.KH_ID;
+                    }
+
+                    if (!string.IsNullOrEmpty(PGV_ID))
+                    {
+                        item.PGV_ID = new Guid(PGV_ID);
+                    }
+                    if (!string.IsNullOrEmpty(PBH_ID))
+                    {
+                        item.PBH_ID = new Guid(PBH_ID);
+                    }
+
+
                     if (!string.IsNullOrEmpty(NDTC_ID))
                     {
                         item.NDTC_ID = new Guid(NDTC_ID);

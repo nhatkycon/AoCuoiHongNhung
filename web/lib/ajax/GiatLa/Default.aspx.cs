@@ -194,8 +194,8 @@ public partial class lib_ajax_GiatLa_Default : basePage
                 #endregion
             case "search":
                 #region search
-                var list = ChoThueVayDal.SelectAll();
-                rendertext(JavaScriptConvert.SerializeObject(list), "text/javascript");
+                var pg = PhieuGiatVayDal.pagerNormal(DAL.con(), null, false, "PGV_Ma desc", q, 10, null, null, null);
+                rendertext(JavaScriptConvert.SerializeObject(pg.List), "text/javascript");
                 break;
                 #endregion
             default: break;

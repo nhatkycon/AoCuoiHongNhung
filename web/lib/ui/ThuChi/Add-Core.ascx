@@ -26,21 +26,90 @@
                 </div>
             </div>
         </div>
-    <div class="form-group">
         <%if (Thu){ %>
-        <label for="PDV_Ma" class="col-sm-2 control-label">Phiếu DV:</label>
-        <div class="col-sm-4">
-            <div class="input-group">
-                <span class="input-group-addon btn autocomplete-btn">
-                    <i class="glyphicon glyphicon-chevron-down"></i>
-                </span>
-                <input type="text" data-src="/lib/ajax/PhieuDichVu/Default.aspx" data-refId="PDV_ID" name="PDV_Ma" id="PDV_Ma"  value="<%=Item.PDV_MaStr %>" 
-                    class="form-control form-autocomplete-input PDV_Ma" autofocus>
-
-                <input type="text" name="PDV_ID" id="PDV_ID" value="<%=Item.PDV_ID %>" class="form-control PDV_ID" style="display: none;">
+            <div class="form-group">
+                <label for="PDV_Ma" class="col-sm-2 control-label">Phiếu DV:</label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <span class="input-group-addon btn autocomplete-btn">
+                            <i class="glyphicon glyphicon-chevron-down"></i>
+                        </span>
+                        <input type="text" data-src="/lib/ajax/PhieuDichVu/Default.aspx" data-refId="PDV_ID" name="PDV_Ma" id="PDV_Ma"  value="<%=Item.PDV_MaStr %>" 
+                            class="form-control form-autocomplete-input PDV_Ma" autofocus>
+                        <input type="text" name="PDV_ID" id="PDV_ID" value="<%=Item.PDV_ID %>" class="form-control PDV_ID" style="display: none;">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <%if(Item.PDV_ID!=Guid.Empty){ %>
+                        <a class="btn btn-link" href="/lib/pages/PhieuDichVu/Add.aspx?ID=<%=Item.PDV_ID %>&ret=<%=Server.UrlEncode(Request.Url.PathAndQuery) %>">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                        </a>
+                    <%} %>
+                </div>
             </div>
-        </div>
+            <div class="form-group">
+                <label for="CTV_MaStr" class="col-sm-2 control-label">Phiếu Thuê váy:</label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <span class="input-group-addon btn autocomplete-btn">
+                            <i class="glyphicon glyphicon-chevron-down"></i>
+                        </span>
+                        <input type="text" data-src="/lib/ajax/ChoThueVay/Default.aspx" data-refId="CTV_ID" name="CTV_MaStr" id="CTV_MaStr"  value="<%=Item.CTV_MaStr %>" 
+                            class="form-control form-autocomplete-input CTV_MaStr" autofocus>
+                        <input type="text" name="CTV_ID" id="CTV_ID" value="<%=Item.CTV_ID %>" class="form-control CTV_ID" style="display: none;">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <%if(Item.PDV_ID!=Guid.Empty){ %>
+                        <a class="btn btn-link" href="/lib/pages/ChoThueVay/Add.aspx?ID=<%=Item.PDV_ID %>&ret=<%=Server.UrlEncode(Request.Url.PathAndQuery) %>">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                        </a>
+                    <%} %>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="PBH_MaStr" class="col-sm-2 control-label">Phiếu báo hỏng:</label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <span class="input-group-addon btn autocomplete-btn">
+                            <i class="glyphicon glyphicon-chevron-down"></i>
+                        </span>
+                        <input type="text" data-src="/lib/ajax/PhieuBaoHong/Default.aspx" data-refId="PBH_ID" name="PBH_MaStr" id="PBH_MaStr"  value="<%=Item.PBH_MaStr %>" 
+                            class="form-control form-autocomplete-input PBH_MaStr" autofocus>
+                        <input type="text" name="PBH_ID" id="PBH_ID" value="<%=Item.PBH_ID %>" class="form-control PBH_ID" style="display: none;">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <%if(Item.PDV_ID!=Guid.Empty){ %>
+                        <a class="btn btn-link" href="/lib/pages/PhieuBaoHong/Add.aspx?ID=<%=Item.PBH_ID %>&ret=<%=Server.UrlEncode(Request.Url.PathAndQuery) %>">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                        </a>
+                    <%} %>
+                </div>
+            </div>
+        <%}else{ %>
+            <div class="form-group">
+                <label for="PGV_MaStr" class="col-sm-2 control-label">Phiếu giặt là:</label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <span class="input-group-addon btn autocomplete-btn">
+                            <i class="glyphicon glyphicon-chevron-down"></i>
+                        </span>
+                        <input type="text" data-src="/lib/ajax/GiatLa/Default.aspx" data-refId="PGV_ID" name="PGV_MaStr" id="PGV_MaStr"  value="<%=Item.PGV_MaStr %>" 
+                            class="form-control form-autocomplete-input PGV_MaStr" autofocus>
+                        <input type="text" name="PGV_ID" id="PGV_ID" value="<%=Item.PGV_ID %>" class="form-control PGV_ID" style="display: none;">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <%if(Item.PDV_ID!=Guid.Empty){ %>
+                        <a class="btn btn-link" href="/lib/pages/GiatLa/Add.aspx?ID=<%=Item.PGV_ID %>&ret=<%=Server.UrlEncode(Request.Url.PathAndQuery) %>">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                        </a>
+                    <%} %>
+                </div>
+            </div>
         <%} %>
+    <div class="form-group">
         <label for="P_Ten" class="col-sm-2 control-label">
             <%=Thu ? "Người nộp:" : "Người lĩnh:"  %>
         </label>

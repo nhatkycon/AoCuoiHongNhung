@@ -12,6 +12,7 @@ public partial class lib_pages_ChoThueVay_Add : System.Web.UI.Page
         var id = Request["ID"];
         var khId = Request["KH_ID"];
         var list = new List<PhieuXuatNhapSanPhamChiTiet>();
+        var listThuChi = new List<ThuChi>();
         using (var con = DAL.con())
         {
             if (string.IsNullOrEmpty(id))
@@ -25,14 +26,15 @@ public partial class lib_pages_ChoThueVay_Add : System.Web.UI.Page
                     Item.KH_ID = kh.ID;
                     Item.KH_Ten = kh.Ten;
                 }
-
             }
             else
             {
                 Item = ChoThueVayDal.SelectById(con, new Guid(id));
                 list = PhieuXuatNhapSanPhamChiTietDal.SelectByPxnSpId(con, id);
+                listThuChi = ThuChiDal.SelectByCtvId(con, Item.ID);
 
             }
+            Add.ListThuChi = listThuChi;
             Add.List = list;
             Add.Item = Item; ;
         }

@@ -2,7 +2,7 @@
 <%@ Register TagPrefix="uc1" TagName="AddTask_1" Src="~/lib/ui/HeThong/templates/AddTask.ascx" %>
 <%@ Register Src="~/lib/ui/HeThong/ListXuatNhapSanPhamTrangThai.ascx" TagPrefix="uc1" TagName="ListXuatNhapSanPhamTrangThai" %>
 <%@ Register Src="~/lib/ui/PhieuXuatNhapSanPhamChiTiet/List-Edit.ascx" TagPrefix="uc1" TagName="ListEdit" %>
-
+<%@ Register Src="~/lib/ui/ThuChi/List-PhieuDichVu.ascx" TagPrefix="uc1" TagName="ListPhieuDichVu" %>
 
 <link href="/lib/css/web/bootstrap-timepicker.min.css" rel="stylesheet" />
 <div class="panel panel-default Normal-Pnl-Add ChoThueVay-Pnl-Add"
@@ -200,3 +200,26 @@
     })
 </script>
 <%} %>
+<%if (!string.IsNullOrEmpty(Id))
+  { %>
+    <script>
+        $(function () {
+            $('.TrangThai').val('<%=Item.TrangThai %>');
+        });
+    </script>
+    <hr />
+    <h3>
+        Phiếu thu
+    </h3>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a class="btn btn-primary" href="/lib/pages/ThuChi/Add-Thu.aspx?CTV_ID=<%=Item.ID %>">
+                Thêm phiếu thu
+            </a>
+        </div>
+        <div class="panel-body">
+            <uc1:ListPhieuDichVu runat="server" ID="ListPhieuDichVu" />
+        </div>
+    </div>
+
+<% } %>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using docsoft.entities;
 using linh.core.dal;
 
@@ -9,6 +10,7 @@ public partial class lib_pages_PhieuBaoHong_Add : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         var id = Request["ID"];
+        var listThuChi = new List<ThuChi>();
         using (var con = DAL.con())
         {
             if (string.IsNullOrEmpty(id))
@@ -21,9 +23,11 @@ public partial class lib_pages_PhieuBaoHong_Add : System.Web.UI.Page
             else
             {
                 Item = PhieuBaoHongDal.SelectById(con, new Guid(id));
+                listThuChi = ThuChiDal.SelectByCtvId(con, Item.ID);
 
             }
             Add.Item = Item; ;
+            Add.ListThuChi = listThuChi;
         }
     }
 }

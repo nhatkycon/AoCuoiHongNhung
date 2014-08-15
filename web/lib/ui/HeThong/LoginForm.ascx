@@ -14,5 +14,8 @@
             Username và mật khẩu không hợp lệ                    
         </div>
         <asp:LinkButton ID="btnLogin" CssClass="btn btn-lg btn-primary btn-block" runat="server" OnClick="btnLogin_Click">Đăng nhập</asp:LinkButton>
-    </div>
+            <a class="btn btn-default btn-block" href="/lib/pages/MemberList.aspx">
+                Danh sách thành viên
+            </a>
+    </div>rminhr
 </div> 

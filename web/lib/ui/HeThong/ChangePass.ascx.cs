@@ -48,7 +48,7 @@ public partial class lib_ui_HeThong_ChangePass : System.Web.UI.UserControl
         if(ok)
         {
             var member = MemberDal.SelectByUser(Security.Username);
-            member.Password = maHoa.EncryptString(Pwd.Text, member.Username);
+            member.Password = maHoa.MD5Encrypt(Pwd.Text);
             member.NgayCapNhat = DateTime.Now;
             MemberDal.Update(member);
             var ret = Request["ret"];
