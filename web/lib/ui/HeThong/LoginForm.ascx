@@ -17,5 +17,5 @@
             <a class="btn btn-default btn-block" href="/lib/pages/MemberList.aspx">
                 Danh sách thành viên
             </a>
-    </div>rminhr
+    </div>
 </div> 

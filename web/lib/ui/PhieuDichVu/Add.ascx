@@ -22,6 +22,21 @@
         <%if(ThungRac){ %>
             <a href="javascript:;" class="btn btn-success restorebtn">Khôi phục</a>
         <%} %>
+        <%if(!string.IsNullOrEmpty(Id)){ %>
+            <div class="btn-group">
+              <a href="#" class="btn btn-danger">In</a>
+              <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+                <span class="sr-only">Danh sách in</span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="/lib/pages/PhieuDichVu/In-HopDongDichVu.aspx?ID=<%=Item.ID %>">Hợp đồng</a></li>
+                <li><a href="#">Phiếu dịch vụ</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Phiếu yêu cầu</a></li>
+              </ul>
+            </div>
+        <%} %>
     </div>
     <div class="panel-body">
         <div class="form-horizontal" role="form">
@@ -683,6 +698,21 @@
         <uc1:AddTask_1_1 AddUrl="/lib/pages/PhieuDichVu/Add.aspx" runat="server" id="AddTask1" />
         <%if(ThungRac){ %>
             <a href="javascript:;" class="btn btn-success restorebtn">Khôi phục</a>
+        <%} %>
+        <%if(!string.IsNullOrEmpty(Id)){ %>
+            <div class="btn-group">
+              <a href="#" class="btn btn-danger">In</a>
+              <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+                <span class="sr-only">Danh sách in</span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="/lib/pages/PhieuDichVu/In-HopDongDichVu.aspx?ID=<%=Item.ID %>">Hợp đồng</a></li>
+                <li><a href="#">Phiếu dịch vụ</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Phiếu yêu cầu</a></li>
+              </ul>
+            </div>
         <%} %>
     </div>
 </div>
