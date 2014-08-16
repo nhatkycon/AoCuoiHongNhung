@@ -72,6 +72,8 @@ public partial class lib_ajax_PhieuDichVu_Default : basePage
         var NhanVienHuy = Request["NhanVienHuy"];
 
         var DuyetEkip = Request["DuyetEkip"];
+        var DeNghiDuyetEkip = Request["DeNghiDuyetEkip"];
+        
         var CHUP_NgayBatDau_Gio = Request["CHUP_NgayBatDau_Gio"];
         var CHUP_NgayKetThuc_Gio = Request["CHUP_NgayKetThuc_Gio"];
         var TD_NgayBatDau_Gio = Request["TD_NgayBatDau_Gio"];
@@ -125,7 +127,10 @@ public partial class lib_ajax_PhieuDichVu_Default : basePage
                             item.NguoiDuyet = Security.UserId;    
                         }
                     }
-                    item.DuyetEkip = Convert.ToBoolean(DuyetEkip);
+                    if (!string.IsNullOrEmpty(DeNghiDuyetEkip))
+                    {
+                        item.DuyetEkip = Convert.ToBoolean(DuyetEkip);                        
+                    }
                     if (!string.IsNullOrEmpty(Ma))
                     {
                         item.Ma = Convert.ToInt32(Ma);

@@ -103,7 +103,7 @@
                     Duyệt Ekip:
                 </label>
                 <div class="col-sm-10">
-                    
+                    <input class="DeNghiDuyetEkip input-sm" id="DeNghiDuyetEkip" style="display: none;" name="DeNghiDuyetEkip" type="text" value="1"/>
                     <%if (Item.DuyetEkip)
                     {%>
                         <input class="DuyetEkip input-sm" id="DuyetEkip" checked="checked" name="DuyetEkip" type="checkbox"/>
