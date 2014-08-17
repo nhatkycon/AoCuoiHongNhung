@@ -624,7 +624,44 @@ namespace docsoft.entities
             return List;
         }
 
+        public static SuKienCollection SelectLichChupAnhCalendar(SqlConnection con, DateTime tuNgay, DateTime denNgay, string NhanVien_Id)
+        {
+            var List = new SuKienCollection();
+            var obj = new SqlParameter[3];
+            if (denNgay > DateTime.MinValue)
+            {
+                obj[0] = new SqlParameter("denNgay", denNgay);
+            }
+            else
+            {
+                obj[0] = new SqlParameter("denNgay", DBNull.Value);
+            }
 
+            if (tuNgay > DateTime.MinValue)
+            {
+                obj[1] = new SqlParameter("tuNgay", tuNgay);
+            }
+            else
+            {
+                obj[1] = new SqlParameter("tuNgay", DBNull.Value);
+            }
+            if (!string.IsNullOrEmpty(NhanVien_Id))
+            {
+                obj[2] = new SqlParameter("NhanVien_Id", NhanVien_Id);
+            }
+            else
+            {
+                obj[2] = new SqlParameter("NhanVien_Id", DBNull.Value);
+            }
+            using (IDataReader rd = SqlHelper.ExecuteReader(con, CommandType.StoredProcedure, "sp_tblSpaMgr_SuKien_Select_SelectLichChupAnhCalendar_linhnx", obj))
+            {
+                while (rd.Read())
+                {
+                    List.Add(getFromReader(rd));
+                }
+            }
+            return List;
+        }
         public static SuKienCollection SelectPhieuDichVuForCalendarPts(SqlConnection con, DateTime tuNgay, DateTime denNgay, string NhanVien_Id)
         {
             var List = new SuKienCollection();

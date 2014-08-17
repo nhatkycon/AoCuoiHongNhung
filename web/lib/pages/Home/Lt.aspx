@@ -20,9 +20,17 @@
                     <a href="/lib/pages/PhieuDichVu/LichThang-GiaoViec-NhanVien.aspx">Lịch làm việc</a>
                 </div>
                 <div class="panel-body">
-                    <uc2:LichThang runat="server" ShowHeader="True" Target="/lib/pages/PhieuDichVu/Default.aspx" ID="LichThang" />
+                    <uc2:LichThang runat="server" ShowHeader="True" Target="/lib/pages/PhieuDichVu/Default.aspx" ClassName="1" ID="LichThang" />
                 </div>
-            </div>        
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a href="/lib/pages/PhieuDichVu/LichThang-GiaoViec-NhanVien.aspx">Lịch chụp thợ ảnh</a>
+                </div>
+                <div class="panel-body">
+                    <uc2:LichThang runat="server" Target="/lib/pages/PhieuDichVu/Default.aspx" ClassName="2" ID="LichThang1" />
+                </div>
+            </div>
         </div>    
     </div>
 </asp:Content>

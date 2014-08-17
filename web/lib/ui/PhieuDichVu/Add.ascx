@@ -219,7 +219,7 @@
                         {%>
                         <label for="CHUP_NhanVien_Ten" class="col-sm-2 control-label">Thợ ảnh:</label>
                         <div class="col-sm-2">
-                            <p class="form-control-static"><%=Item.CHUP_NhanVien %></p>
+                            <p class="form-control-static"><%=Item.CHUP_NhanVien_Ten %></p>
                         </div>
                         <label for="CHUP_NgayBatDau" class="col-sm-2 control-label">Thời gian:</label>
                         <div class="col-sm-2">

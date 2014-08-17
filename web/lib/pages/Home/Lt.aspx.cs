@@ -17,6 +17,9 @@ public partial class lib_pages_Home_Lt : System.Web.UI.Page
             var list = SuKienDal.SelectPhieuDichVuForCalendar(con, cuoiThangTruoc, dauThangSau, null);
             LichThang.List = list;
 
+            var list1= SuKienDal.SelectLichChupAnhCalendar(con, cuoiThangTruoc, dauThangSau, null);
+            LichThang1.List = list1;
+
             SinhNhat.List = KhachHangDal.pagerSinhNhat(null, false, null, null, 20, null, null).List;
 
             EventsViewer.List = SuKienDal.SelectPhieuDichVuEventsViewer(con, d.AddDays(-1).ToString("yyyy-MM-dd"), muoiNgayToi.ToString("yyyy-MM-dd"), null);

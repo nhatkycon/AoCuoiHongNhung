@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="LichThang.ascx.cs" Inherits="lib_ui_PhieuDichVu_LichThang" %>
 <link href="/lib/css/web/responsive-calendar.css" rel="stylesheet" />
 <!-- Responsive calendar - START -->
-<div class="responsive-calendar">
+<div class="responsive-calendar responsive-calendar-<%=ClassName %>">
 <div class="controls">
     <a class="pull-left" data-go="prev"><div class="btn btn-primary">
                                             &lt;&lt;</div></a>
@@ -55,7 +55,7 @@
 <script src="/lib/js/jQueryLib/responsive-calendar.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $(".responsive-calendar").responsiveCalendar({
+        $('.responsive-calendar-<%=ClassName%>').responsiveCalendar({
             translateMonths: [ '1' , '2' , '3', '4','5','6','7','8','9','10','11','12']
             //, monthChangeAnimation: false
             ,time: '<% = DateTime.Now.ToString("yyyy-MM") %>',
