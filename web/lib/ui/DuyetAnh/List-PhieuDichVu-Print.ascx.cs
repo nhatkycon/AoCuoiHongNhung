@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using docsoft.entities;
 
-public partial class lib_ui_PhieuDichVu_List_DeNghiDaDuyet : System.Web.UI.UserControl
+public partial class lib_ui_DuyetAnh_List_PhieuDichVu_Print : System.Web.UI.UserControl
 {
-    public List<PhieuDichVu> List { get; set; }
-    public string Target { get; set; }
+    public List<DuyetAnh> List { get; set; }
     protected void Page_Load(object sender, EventArgs e)
     {
         if (List == null) return;

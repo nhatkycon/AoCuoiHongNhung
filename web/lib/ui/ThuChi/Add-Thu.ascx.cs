@@ -17,6 +17,8 @@ public partial class lib_ui_ThuChi_Add_Thu : System.Web.UI.UserControl
         AddTask.EditAble = editAble;
         AddTask_1_1.EditAble = editAble;
 
+        AddTask.PrintUrl = AddTask_1_1.PrintUrl = string.Format("/lib/pages/ThuChi/In-Thu.aspx?ID={0}", Item.ID);
+
         const bool addAble = true;
         AddTask.AddAble = addAble;
         AddTask_1_1.AddAble = addAble;

@@ -16,7 +16,8 @@
     data-list="/lib/pages/PhieuDichVu/List-Pts.aspx"
     >
     <div class="panel-heading">
-        <uc1:AddTask_1_1_1 AddUrl="/lib/pages/PhieuDichVu/Add-Pts.aspx" ListUrl="/lib/pages/PhieuDichVu/List-Pts.aspx" runat="server" id="AddTask" />
+        <uc1:AddTask_1_1_1 AddUrl="/lib/pages/PhieuDichVu/Add-Pts.aspx" 
+            ListUrl="/lib/pages/PhieuDichVu/List-Pts.aspx" runat="server" id="AddTask" />
     </div>
     <div class="panel-body">
         <div class="form-horizontal" role="form">

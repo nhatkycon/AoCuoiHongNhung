@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Globalization;
-using docsoft;
 using docsoft.entities;
 using linh.core.dal;
 
@@ -24,6 +22,5 @@ public partial class lib_pages_PhieuDichVu_List_DeNghiChuaDuyet : System.Web.UI.
             paging = pg.Paging;
 
         }
-
     }
 }

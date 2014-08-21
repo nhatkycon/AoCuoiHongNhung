@@ -601,7 +601,8 @@ var bxVinhFn = {
                         url: savedUrl
                             , data: data
                             , success: function (_rs) {
-                                pitem.hide.remove();
+                                pitem.hide();
+                                pitem.remove();
                                 bxVinhFn.normalFormFn.tinhToanPhieuDichVuFn();
                             }
                     });

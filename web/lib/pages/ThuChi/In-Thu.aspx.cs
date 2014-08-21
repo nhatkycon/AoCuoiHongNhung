@@ -1,7 +1,8 @@
 ﻿using System;
 using docsoft.entities;
 using linh.core.dal;
-public partial class lib_pages_ThuChi_Add_Thu : System.Web.UI.Page
+
+public partial class lib_pages_ThuChi_In_Thu : System.Web.UI.Page
 {
     public ThuChi Item { get; set; }
     protected void Page_Load(object sender, EventArgs e)
@@ -18,14 +19,14 @@ public partial class lib_pages_ThuChi_Add_Thu : System.Web.UI.Page
             if (string.IsNullOrEmpty(id))
             {
                 Item = ThuChiDal.SelectByDraff(con, true);
-                if (khId!= null && khId.Length >= 36)
+                if (khId != null && khId.Length >= 36)
                 {
                     khId = khId.Substring(khId.LastIndexOf(',') + 1);
                     var kh = KhachHangDal.SelectById(new Guid(khId), con);
                     Item.P_Ten = kh.Ten;
                     Item.P_ID = kh.ID;
                 }
-                
+
 
                 if (pdvId != null && pdvId.Length >= 36)
                 {
@@ -63,14 +64,17 @@ public partial class lib_pages_ThuChi_Add_Thu : System.Web.UI.Page
                     Item.PBH_ID = pbh.ID;
                     Item.PBH_Ma = pbh.Ma;
                 }
+
             }
             else
             {
                 Item = ThuChiDal.SelectById(con, new Guid(id));
             }
+            var logoStr = DanhMucDal.SelectByMa("BAOCAO-HEADER-THUCHI", con).Description;
+            InPhieuThu.LogoStr = logoStr;
             var listLoai = DanhMucDal.SelectByLDMMa(con, "NDTC-THU");
-            AddThu.ListLoai = listLoai;
-            AddThu.Item = Item;
+            InPhieuThu.ListLoai = listLoai;
+            InPhieuThu.Item = Item;
         }
     }
 }

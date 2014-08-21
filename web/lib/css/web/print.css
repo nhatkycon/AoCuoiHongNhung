@@ -13,3 +13,36 @@ table {
     clear: both;
     width: 100%;
 }
+table
+{
+    border: none;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+table td, table th
+{
+    padding: 4px 10px;
+    text-align: left;
+    vertical-align: top;
+}
+table th
+{
+    text-align: center;
+}
+table.border td, table.border th
+{
+    border: 1px solid #aaa;
+}
+.ChonAnh-PrintItem {
+    border: solid 1px #aaa;
+    display: inline-block;
+    width: 20%;
+}
+.ChonAnh-PrintItem-Stt {
+    display: inline-block;
+    border-right: solid 1px #aaa;
+    padding: 5px 10px;
+}
+.ChonAnh-PrintItem-Ten {
+    padding: 5px 10px;
+}

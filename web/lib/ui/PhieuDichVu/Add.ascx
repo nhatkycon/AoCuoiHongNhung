@@ -31,9 +31,9 @@
               </button>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="/lib/pages/PhieuDichVu/In-HopDongDichVu.aspx?ID=<%=Item.ID %>">Hợp đồng</a></li>
-                <li><a href="#">Phiếu dịch vụ</a></li>
+                <li><a href="/lib/pages/PhieuDichVu/In-PhieuDichVu.aspx?ID=<%=Item.ID %>">Phiếu dịch vụ</a></li>
                 <li class="divider"></li>
-                <li><a href="#">Phiếu yêu cầu</a></li>
+                <li><a href="/lib/pages/PhieuDichVu/In-PhieuChonAnh.aspx?ID=<%=Item.ID %>">Phiếu chọn ảnh</a></li>
               </ul>
             </div>
         <%} %>
@@ -314,7 +314,9 @@
                             </div>
                         </div>
                     <%}else{ %>
-                        <label for="TD_NhanVien_Ten" class="col-sm-2 control-label">Trang điểm:</label>
+                        <label for="TD_NhanVien_Ten" class="col-sm-2 control-label">
+                            Trang điểm:
+                        </label>
                         <div class="col-sm-2">
                             <p class="form-control-static">
                                 <%=Item.TD_NhanVien_Ten %>
@@ -708,9 +710,9 @@
               </button>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="/lib/pages/PhieuDichVu/In-HopDongDichVu.aspx?ID=<%=Item.ID %>">Hợp đồng</a></li>
-                <li><a href="#">Phiếu dịch vụ</a></li>
+                <li><a href="/lib/pages/PhieuDichVu/In-PhieuDichVu.aspx?ID=<%=Item.ID %>">Phiếu dịch vụ</a></li>
                 <li class="divider"></li>
-                <li><a href="#">Phiếu yêu cầu</a></li>
+                <li><a href="/lib/pages/PhieuDichVu/In-PhieuChonAnh.aspx?ID=<%=Item.ID %>">Phiếu chọn ảnh</a></li>
               </ul>
             </div>
         <%} %>
