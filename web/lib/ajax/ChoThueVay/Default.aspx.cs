@@ -31,6 +31,9 @@ public partial class lib_ajax_ChoThueVay_Default : basePage
         var NguoiCapNhat = Request["NguoiCapNhat"];
         var NgayCapNhat = Request["NgayCapNhat"];
         var TrangThai = Request["TrangThai"];
+        var GiayTo = Request["GiayTo"];
+        var DaTraGiayTo = Request["DaTraGiayTo"];
+        DaTraGiayTo = !string.IsNullOrEmpty(DaTraGiayTo) ? "true" : "false";
 
         var q = Request["q"];
         var refUrl = Request["refUrl"];
@@ -66,7 +69,8 @@ public partial class lib_ajax_ChoThueVay_Default : basePage
                     {
                         item.DatCong = Convert.ToDouble(DatCong);
                     }
-
+                    item.GiayTo = GiayTo;
+                    item.DaTraGiayTo = Convert.ToBoolean(DaTraGiayTo);
                     if (!string.IsNullOrEmpty(Ma))
                     {
                         item.Ma = Convert.ToInt32(Ma);                        

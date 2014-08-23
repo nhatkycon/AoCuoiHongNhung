@@ -5,7 +5,7 @@
 <div class="print-frame">
     <table width="100%" cellpadding="5" cellspacing="0">
         <tr>
-            <td valign="top">
+            <td valign="top" style="">
                 <%=LogoStr %>
             </td>
             <td valign="top" style="width: 300px;">
@@ -79,45 +79,45 @@
         </thead>
         <tbody>
             <uc1:ListPhieuDichVuPrint runat="server" ID="ListPhieuDichVuPrint" />
+            <tr>
+                <td>
+                </td>
+                <td style="text-align: right;">
+                </td>
+                <td style="text-align: right; font-weight: bold;">
+                    Tổng:
+                </td>
+                <td style="text-align: right; font-weight: bold;">
+                    <%=Lib.TienVietNam(Item.TongTien) %>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right;">
+                    Đặt cọc:
+                </td>
+                <td style="text-align: right;font-weight: bold;">
+                    <%=Lib.TienVietNam(Item.DatCoc) %>
+                </td>
+                <td style="text-align: right;">
+                    Thanh toán:
+                </td>
+                <td style="text-align: right;font-weight: bold;">
+                    <%=Lib.TienVietNam(Item.X_ThanhToan) %>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td style="text-align: right;">
+                </td>
+                <td style="text-align: right; font-weight: bold;">
+                    Còn nợ:
+                </td>
+                <td style="text-align: right; font-weight: bold;">
+                    <%=Lib.TienVietNam(Item.X_ConNo) %>
+                </td>
+            </tr>
         </tbody>
-        <tr>
-            <td>
-            </td>
-            <td style="text-align: right;">
-            </td>
-            <td style="text-align: right; font-weight: bold;">
-                Tổng:
-            </td>
-            <td style="text-align: right; font-weight: bold;">
-                <%=Lib.TienVietNam(Item.TongTien) %>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right;">
-                Đặt cọc:
-            </td>
-            <td style="text-align: right;font-weight: bold;">
-                <%=Lib.TienVietNam(Item.DatCoc) %>
-            </td>
-            <td style="text-align: right;">
-                Thanh toán:
-            </td>
-            <td style="text-align: right;font-weight: bold;">
-                <%=Lib.TienVietNam(Item.X_ThanhToan) %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-            </td>
-            <td style="text-align: right;">
-            </td>
-            <td style="text-align: right; font-weight: bold;">
-                Còn nợ:
-            </td>
-            <td style="text-align: right; font-weight: bold;">
-                <%=Lib.TienVietNam(Item.X_ConNo) %>
-            </td>
-        </tr>
     </table>
     <h3>Ekip:</h3>
     <table width="100%" cellpadding="5" cellspacing="0" class="border">

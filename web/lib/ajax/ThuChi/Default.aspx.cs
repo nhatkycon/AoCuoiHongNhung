@@ -85,15 +85,11 @@ public partial class lib_ajax_ThuChi_Default : basePage
                     if (!string.IsNullOrEmpty(PDV_ID))
                     {
                         item.PDV_ID = new Guid(PDV_ID);
-                        var pdv = PhieuDichVuDal.SelectById(DAL.con(), item.PDV_ID);
-                        item.P_ID = pdv.KH_ID;
                     }
 
                     if (!string.IsNullOrEmpty(CTV_ID))
                     {
                         item.CTV_ID = new Guid(CTV_ID);
-                        var ctv = ChoThueVayDal.SelectById(DAL.con(), item.CTV_ID);
-                        item.P_ID = ctv.KH_ID;
                     }
 
                     if (!string.IsNullOrEmpty(PGV_ID))

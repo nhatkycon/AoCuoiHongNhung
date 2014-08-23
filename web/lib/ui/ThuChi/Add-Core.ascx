@@ -60,8 +60,8 @@
                     </div>
                 </div>
                 <div class="col-sm-2">
-                    <%if(Item.PDV_ID!=Guid.Empty){ %>
-                        <a class="btn btn-link" href="/lib/pages/ChoThueVay/Add.aspx?ID=<%=Item.PDV_ID %>&ret=<%=Server.UrlEncode(Request.Url.PathAndQuery) %>">
+                    <%if(Item.CTV_ID!=Guid.Empty){ %>
+                        <a class="btn btn-link" href="/lib/pages/ChoThueVay/Add.aspx?ID=<%=Item.CTV_ID %>&ret=<%=Server.UrlEncode(Request.Url.PathAndQuery) %>">
                             <i class="glyphicon glyphicon-info-sign"></i>
                         </a>
                     <%} %>
@@ -120,7 +120,7 @@
                 </span>
                 <input type="text" data-src="/lib/ajax/KhachHang/Default.aspx" data-refId="P_ID" name="P_Ten" id="P_Ten"  value="<%=Item.P_Ten %>" 
                     class="form-control form-autocomplete-input P_Ten" autofocus>
-                <input type="text" name="P_ID" id="KH_ID" value="<%=Item.P_ID == Guid.Empty ? string.Empty : Item.P_ID.ToString() %>" class="form-control P_ID" style="display: none;">
+                <input type="text" name="P_ID" id="P_ID" value="<%=Item.P_ID == Guid.Empty ? string.Empty : Item.P_ID.ToString() %>" class="form-control P_ID" style="display: none;">
                 <a href="javascript:;" class="input-group-addon btn btn-default btnThemNhanhKH" data-toggle="modal" data-target="#KhachHangAddQuickModal">
                     <i class="glyphicon glyphicon-user"></i> Thêm
                 </a>

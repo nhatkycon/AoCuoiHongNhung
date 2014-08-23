@@ -22,6 +22,9 @@ public partial class lib_pages_XuatNhapSanPham_Print : System.Web.UI.Page
             ItemPrint.Item = Item;
             ItemPrint.PhieuDichVuItem = phieuDichVuItem;
             ItemPrint.KhachHangItem = khachHangItem;
+
+            var logoStr = DanhMucDal.SelectByMa("BAOCAO-HEADER-THUCHI", con).Description;
+            ItemPrint.LogoStr = logoStr;
         }
     }
 }

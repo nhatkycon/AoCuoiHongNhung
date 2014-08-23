@@ -651,6 +651,8 @@ namespace docsoft.entities
         public Int32 NguoiCapNhat { get; set; }
         public DateTime NgayCapNhat { get; set; }
         public Int32 TrangThai { get; set; }
+        public String GiayTo { get; set; }
+        public Boolean DaTraGiayTo { get; set; }
         #endregion
         #region Contructor
         public ChoThueVay()
@@ -743,7 +745,7 @@ namespace docsoft.entities
         public static ChoThueVay Insert(ChoThueVay item)
         {
             var Item = new ChoThueVay();
-            var obj = new SqlParameter[19];
+            var obj = new SqlParameter[21];
             obj[0] = new SqlParameter("CTV_ID", item.ID);
             obj[1] = new SqlParameter("CTV_KH_ID", item.KH_ID);
             obj[2] = new SqlParameter("CTV_Ma", item.Ma);
@@ -805,6 +807,8 @@ namespace docsoft.entities
                 obj[17] = new SqlParameter("CTV_NgayCapNhat", DBNull.Value);
             }
             obj[18] = new SqlParameter("CTV_TrangThai", item.TrangThai);
+            obj[19] = new SqlParameter("CTV_GiayTo", item.GiayTo);
+            obj[20] = new SqlParameter("CTV_DaTraGiayTo", item.DaTraGiayTo);
 
             using (IDataReader rd = SqlHelper.ExecuteReader(DAL.con(), CommandType.StoredProcedure, "sp_tblAoCuoi_ChoThueVay_Insert_InsertNormal_linhnx", obj))
             {
@@ -819,7 +823,7 @@ namespace docsoft.entities
         public static ChoThueVay Update(ChoThueVay item)
         {
             var Item = new ChoThueVay();
-            var obj = new SqlParameter[19];
+            var obj = new SqlParameter[21];
             obj[0] = new SqlParameter("CTV_ID", item.ID);
             obj[1] = new SqlParameter("CTV_KH_ID", item.KH_ID);
             obj[2] = new SqlParameter("CTV_Ma", item.Ma);
@@ -881,6 +885,8 @@ namespace docsoft.entities
                 obj[17] = new SqlParameter("CTV_NgayCapNhat", DBNull.Value);
             }
             obj[18] = new SqlParameter("CTV_TrangThai", item.TrangThai);
+            obj[19] = new SqlParameter("CTV_GiayTo", item.GiayTo);
+            obj[20] = new SqlParameter("CTV_DaTraGiayTo", item.DaTraGiayTo);
 
             using (IDataReader rd = SqlHelper.ExecuteReader(DAL.con(), CommandType.StoredProcedure, "sp_tblAoCuoi_ChoThueVay_Update_UpdateNormal_linhnx", obj))
             {
@@ -1032,7 +1038,14 @@ namespace docsoft.entities
             {
                 Item.TrangThai = (Int32)(rd["CTV_TrangThai"]);
             }
-
+            if (rd.FieldExists("CTV_GiayTo"))
+            {
+                Item.GiayTo = (String)(rd["CTV_GiayTo"]);
+            }
+            if (rd.FieldExists("CTV_DaTraGiayTo"))
+            {
+                Item.DaTraGiayTo = (Boolean)(rd["CTV_DaTraGiayTo"]);
+            }
 
             if (rd.FieldExists("NguoiTao_Ten"))
             {

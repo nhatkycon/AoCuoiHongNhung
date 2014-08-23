@@ -2,7 +2,7 @@
 <%@ Register Src="~/lib/ui/PhieuXuatNhapSanPhamChiTiet/templates/Item-Print.ascx" TagPrefix="uc1" TagName="ItemPrint" %>
 
 <table width="100%" border="1" cellpadding="4" cellspacing="0">
-<tr>
+<thead>
     <th>
         Sản phẩm
     </th>
@@ -18,7 +18,7 @@
     <th style="width: 200px;">
         Ghi chú
     </th>
-</tr> 
+</thead> 
     <asp:Repeater runat="server" ID="rpt">
         <ItemTemplate>
             <uc1:ItemPrint runat="server" ID="ItemPrint" Item='<%# Container.DataItem %>' /> 

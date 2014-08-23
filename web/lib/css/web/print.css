@@ -36,7 +36,6 @@ table.border td, table.border th
 .ChonAnh-PrintItem {
     border: solid 1px #aaa;
     display: inline-block;
-    width: 20%;
 }
 .ChonAnh-PrintItem-Stt {
     display: inline-block;

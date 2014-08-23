@@ -1,37 +1,61 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Item-Print.ascx.cs" Inherits="lib_ui_XuatNhapSanPham_templates_Item_Print" %>
 <%@ Register Src="~/lib/ui/PhieuXuatNhapSanPhamChiTiet/List-Print.ascx" TagPrefix="uc1" TagName="ListPrint" %>
-
+<div class="print-frame">
 <table width="100%">
     <tr>
         <td style="width: 200px;">
             <h3>
-                Áo cưới Hồng nhung
+                <%=LogoStr %>
             </h3>
         </td>
         <td style="text-align: center;">
             <h1>
-                Phiếu xuất phụ kiện & Váy
+                Xuất phụ kiện & Váy
             </h1>
         </td>
-        <td style="width: 200px;">
-            <p style="text-align: right;">
-                Mã: <%=Item.MaStr %>
-            </p>
-            <p style="text-align: right;">
-                Ngày: <%=Item.NgayLap.ToString("dd/MM/yyyy") %>
-            </p>
-        </td>
-        <td style="width: 200px;">
-            <p style="text-align: right;">
-                <%if(Item.NgayXuat!= DateTime.Now){ %>
-                  Ngày xuất: <%=Item.NgayXuat.ToString("dd/MM/yyyy") %>
-                <%} %>
-            </p>
-            <p style="text-align: right;">
-                <%if(Item.NgayNhap!= DateTime.Now){ %>
-                  Ngày nhập: <%=Item.NgayNhap.ToString("dd/MM/yyyy") %>
-                <%} %>
-            </p>
+        <td style="width: 200px;" valign="top">
+            <table>
+                <tr>
+                    <td style="width: 100px; text-align: right;">
+                        Số:                
+                    </td>
+                    <td style="width: 100px; font-weight: bold;">
+                        <%=Item.MaStr %>                
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">
+                        Ngày:                
+                    </td>
+                    <td style="font-weight: bold;">
+                        <%=Item.NgayLap.ToString("dd/MM/yyyy") %>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">
+                        Nhân viên:                
+                    </td>
+                    <td style="font-weight: bold;">
+                        <%=Item.NguoiTao_Ten %>                
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">
+                        Ngày xuất:           
+                    </td>
+                    <td style="font-weight: bold;">
+                        <%=Item.NgayXuat.ToString("dd/MM/yyyy") %>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">
+                        Ngày nhập:           
+                    </td>
+                    <td style="font-weight: bold;">
+                        <%=Item.NgayNhap == DateTime.MinValue ? "" : Item.NgayNhap.ToString("dd/MM/yyyy") %>
+                    </td>
+                </tr>
+            </table>
         </td>
     </tr>
 </table>
@@ -76,20 +100,20 @@
 <br/>
 <table width="100%">
     <tr>
-        <td style="width: 33%; text-align: center;">
-            <i>
+        <td style="width:33%; text-align: center;">
+            <strong>
                 Người xuất
-            </i>
+            </strong>
         </td>
         <td style="width: 33%; text-align: center;">
-            <i>
+            <strong>
                 Người nhập
-            </i>
+            </strong>
         </td>
         <td style="text-align: center;">
-            <i>
+            <strong>
                 Thủ kho
-            </i>
+            </strong>
         </td>
     </tr>
     <tr>
@@ -123,8 +147,8 @@
 </table>
 <script type="text/javascript">
     function PrintWindow() {
-        window.print();
-        CheckWindowState();
+        //window.print();
+        //CheckWindowState();
     }
 
     function CheckWindowState() {
@@ -138,3 +162,4 @@
 
     PrintWindow();
 </script>
+</div>

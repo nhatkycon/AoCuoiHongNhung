@@ -1,22 +1,33 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Item-In-HopDongDichVu.ascx.cs" Inherits="lib_ui_PhieuDichVu_templates_Item_In_HopDongDichVu" %>
 <%@ Import Namespace="linh.common" %>
 <div class="print-frame">
-    <p align="center">
-        <strong>
-        CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
-        </strong>
-    </p>
-    <p align="center">
-        Độc lập – Tự do – Hạnh phúc
-    </p>
-    <h1 align="center">
-        HỢP ĐỒNG DỊCH VỤ ÁO CƯỚI
-    </h1>
-    <p align="center">
-        Hợp đồng số: <strong><%=Item.MaStr %></strong>/HĐDV-HN
+    <table width="100%" cellpadding="5" cellspacing="0">
+        <tr>
+            <td valign="top" style="width: 200px;">
+                <%=LogoStr %>
+            </td>
+            <td valign="top">
+                <p align="center">
+                    <strong>
+                    CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
+                    </strong>
+                </p>
+                <p align="center">
+                    Độc lập – Tự do – Hạnh phúc
+                </p>
+                <h1 align="center">
+                    HỢP ĐỒNG DỊCH VỤ ÁO CƯỚI
+                </h1>
+                <p align="center">
+                    Hợp đồng số: <strong><%=Item.MaStr %></strong>/HĐDV-HN
+                </p>
+            </td>
+        </tr>
+    </table>
+    <p style="text-align: right; font-style: italic;">
+        Hà Nội, ngày <%=Item.NgayTuVan.ToString("dd") %> tháng <%=Item.NgayTuVan.Month %> năm <%=Item.NgayTuVan.Year %>        
     </p>
     <p align="left">
-        Hà Nội, ngày <%=Item.NgayTuVan.ToString("dd") %> tháng <%=Item.NgayTuVan.Month %> năm <%=Item.NgayTuVan.Year %>
         <br/>
         <br/>
         <strong>Chúng tôi gồm có:</strong>
@@ -26,20 +37,20 @@
         <strong><i><%=Item._KhachHang.XungHo %></i> <%=Item._KhachHang.Ten %></strong>
     </p>
     <p>
-        CMTND <%=Item._KhachHang.CMND %> Công an <%=Item._KhachHang.CMND_NoiCap %> cấp ngày <%=Item._KhachHang.CMND_NgayCap.ToString("dd/MM/yyyy") %>
+        CMTND <strong><%=Item._KhachHang.CMND %></strong> Công an <strong><%=Item._KhachHang.CMND_NoiCap %></strong> cấp ngày <strong><%=Item._KhachHang.CMND_NgayCap== DateTime.MinValue ? "" : Item._KhachHang.CMND_NgayCap.ToString("dd/MM/yyyy") %></strong>
     </p>
     <p>
-        Điện thoại <%=Item._KhachHang.Mobile %> Địa chỉ <%=Item._KhachHang.DiaChi %>
+        Điện thoại <strong><%=Item._KhachHang.Mobile %></strong> Địa chỉ <strong><%=Item._KhachHang.DiaChi %></strong>
     </p>
     <p>
         <strong>Bên B </strong>
         :<strong> CÔNG TY TNHH ẢNH VIỆN ÁO CƯỚI HỒNG NHUNG</strong>
     </p>
     <p>
-        Địa chỉ : 16 K1 - Yên Lãng - Đống Đa - Hà Nội
+        Địa chỉ : <strong>16 K1 - Yên Lãng - Đống Đa - Hà Nội</strong>
     </p>
     <p>
-        Điện thoại : (04) 85 89 83 18 Hotline: 0962 31 81 31
+        Điện thoại : <strong>(04) 85 89 83 18 Hotline: 0962 31 81 31</strong>
     </p>
     <p>
         Người đại diện : <strong>Nguyễn Thị Nhung</strong>
@@ -49,10 +60,15 @@
     </p>
     <p>
         <strong>Tổng gói dịch vụ</strong>
-        : <strong><%=Lib.TienVietNam(Item.TongTien) %></strong>
+        : <strong><%=Lib.TienVietNam(Item.TongTien) %></strong> vnđ
     </p>
     <p>
-        Kích cỡ Album <%=Item.CHUP_LoaiAlbum %>.Ảnh phóng: <%=Item.PTS_AnhPhong %>.
+        <strong>
+            <i>(Bằng chữ: <%=Lib.So_chu(Item.TongTien) %>)</i>
+        </strong>
+    </p>
+    <p>
+        Kích cỡ Album <%=Item.CHUP_LoaiAlbum %>.......Ảnh phóng: <%=Item.PTS_AnhPhong %>.......
     </p>
     <p>
         Ảnh để bàn <%=Item.PTS_AnhBan %>.Bìa Album ……………… Mã khung………………
@@ -64,7 +80,7 @@
         Địa điểm chụp ảnh: <strong><%=Item.CHUP_DiaDiem %></strong>
     </p>
     <p>
-        1/ Bên A đặt cọc trước <strong><%=Lib.TienVietNam(Item.DatCoc) %></strong>VND để bên B lên kế hoach chụp ( Nếu bên A hủy hợp đồng thì số tiền này sẽ không hoàn lại)
+        1/ Bên A đặt cọc trước <strong><%=Lib.TienVietNam(Item.DatCoc) %></strong> vnđ <strong><i>(Bằng chữ: <%=Lib.So_chu(Item.DatCoc) %>)</i></strong> để bên B lên kế hoach chụp ( Nếu bên A hủy hợp đồng thì số tiền này sẽ không hoàn lại)
     </p>
     <p>
         2/ Trước khi chụp ảnh, bên A phải thanh toán trước 80% tổng giá trị hợp đồng, 20% còn lại sẽ thanh toán sau khi lấy album.

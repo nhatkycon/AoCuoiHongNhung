@@ -45,7 +45,7 @@
         Người nộp tiền: <strong><%=Item.P_Ten %></strong>
     </p>
     <p>
-        Địa chỉ:
+        Nội dung: <strong><%=Item.NDTC_Ten %></strong>
     </p>
     <p>
         Lý do: <strong><%=Item.Mota %></strong>

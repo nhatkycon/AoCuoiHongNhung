@@ -8,29 +8,29 @@
             <td valign="top">
                 <%=LogoStr %>
             </td>
-            <td valign="top" style="width: 300px;">
+            <td valign="top" style="width: 200px;">
                 <table>
                     <tr>
-                        <td style="width: 100px; text-align: right;">
+                        <td style="width: 50px; text-align: right;">
                             Số:                
                         </td>
-                        <td style="width: 200px; font-weight: bold;">
+                        <td style="width: 150px; font-weight: bold;">
                             <%=Lib.FormatMa(Item.Ma) %>                
                         </td>
                     </tr>
                     <tr>
-                        <td style="width: 100px; text-align: right;">
+                        <td style="text-align: right;">
                             Ngày:                
                         </td>
-                        <td style="width: 200px; font-weight: bold;">
+                        <td style="font-weight: bold;">
                             <%=Item.PTS_NgayBatDau.ToString("dd/MM/yyyy") %>              
                         </td>
                     </tr>
                     <tr>
-                        <td style="width: 100px; text-align: right;">
+                        <td style="text-align: right;">
                             Photoshop:                
                         </td>
-                        <td style="width: 200px; font-weight: bold;">
+                        <td style="font-weight: bold;">
                             <%=Item.PTS_NhanVien_Ten %>                
                         </td>
                     </tr>

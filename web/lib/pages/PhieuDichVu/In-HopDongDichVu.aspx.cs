@@ -22,6 +22,8 @@ public partial class lib_pages_PhieuDichVu_In_HopDongDichVu : System.Web.UI.Page
                 Item = PhieuDichVuDal.SelectById(con, new Guid(id));
                 Item._KhachHang = KhachHangDal.SelectById(Item.KH_ID, con);
             }
+            var logoStr = DanhMucDal.SelectByMa("BAOCAO-HEADER-THUCHI", con).Description;
+            Add.LogoStr = logoStr;
             Add.Item = Item; ;
         }
     }

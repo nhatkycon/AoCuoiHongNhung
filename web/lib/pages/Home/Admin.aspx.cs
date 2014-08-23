@@ -18,7 +18,7 @@ public partial class lib_pages_Home_Admin : System.Web.UI.Page
 
             SinhNhat.List = KhachHangDal.pagerSinhNhat(null, false, null, null, 20, null, null).List;
 
-            EventsViewer.List = SuKienDal.SelectPhieuDichVuEventsViewer(con, d.AddDays(-1).ToString("yyyy-MM-dd"), muoiNgayToi.ToString("yyyy-MM-dd"), null);
+            EventsViewer.List = SuKienDal.SelectPhieuDichVuEventsViewer(con, d.ToString("yyyy-MM-dd"), muoiNgayToi.ToString("yyyy-MM-dd"), null);
         }
     }
 }

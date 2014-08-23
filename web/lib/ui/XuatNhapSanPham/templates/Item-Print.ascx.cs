@@ -8,7 +8,7 @@ public partial class lib_ui_XuatNhapSanPham_templates_Item_Print : System.Web.UI
     public PhieuXuatNhapSanPham Item { get; set; }
     public KhachHang KhachHangItem { get; set; }
     public PhieuDichVu PhieuDichVuItem { get; set; }
-
+    public string LogoStr { get; set; }
     public List<PhieuXuatNhapSanPhamChiTiet> List { get; set; }
     protected void Page_Load(object sender, EventArgs e)
     {

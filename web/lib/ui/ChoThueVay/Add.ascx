@@ -172,6 +172,24 @@
                 </div>
             </div>
             <hr/>
+            <div class="form-group">
+                <label for="GiayTo" class="col-sm-1 control-label">Giấy tờ:</label>
+                <div class="col-sm-7">
+                    <textarea id="GiayTo" name="GiayTo" type="text" rows="3" class="form-control"><%=Item.GiayTo%></textarea>
+                </div>
+                <label for="DaTraGiayTo" class="col-sm-2 control-label">Trả giấy tờ:</label>
+                <div class="col-sm-2">
+                    <%if (Item.DaTraGiayTo)
+                    {%>
+                        <input class="DaTraGiayTo input-sm" id="DaTraGiayTo" checked="checked" name="DaTraGiayTo" type="checkbox"/>
+                    <%}
+                    else
+                    {%>
+                        <input class="DaTraGiayTo input-sm" id="DaTraGiayTo" name="DaTraGiayTo" type="checkbox"/>
+                    <% } %>
+                </div>
+            </div>
+            <hr/>
             <uc1:ListEdit runat="server" ID="ListEdit" />
             <hr/>
             <%if (!string.IsNullOrEmpty(Id)){ %>
