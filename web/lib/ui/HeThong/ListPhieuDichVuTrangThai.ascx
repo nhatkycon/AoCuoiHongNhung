@@ -7,7 +7,8 @@
     <option value="35">Trang điểm cô dâu</option>
     <option value="40">Đã có ảnh thô</option>
     <option value="50">Chờ chọn ảnh</option>
-    <option value="60">Đang PTS - chờ duyệt maket</option>
+    <option value="60">Đang PTS</option>
+    <option value="62">Xong PTS - chờ duyệt maket</option>
     <option value="70">Đã duyệt maket</option>
     <option value="80">Đã có sản phẩm</option>
     <option value="90">Đã trả sản phẩm</option>

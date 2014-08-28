@@ -7,11 +7,6 @@
         </a>
     </td>
     <td>
-        <a href="/lib/pages/PhieuDichVu/Add.aspx?ID=<%=Item.PDV_ID %>&ret=<%=Server.UrlEncode(Request.Url.PathAndQuery) %>">
-            <%=Item.PDV_MaStr %>
-        </a>
-    </td>
-    <td>
         <a href="/lib/pages/KhachHang/Add.aspx?ID=<%=Item.P_ID %>&ret=<%=Server.UrlEncode(Request.Url.PathAndQuery) %>">
             <%=Item.P_Ten %>
         </a>

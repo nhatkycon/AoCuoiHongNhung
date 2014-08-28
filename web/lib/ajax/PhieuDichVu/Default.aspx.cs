@@ -29,6 +29,7 @@ public partial class lib_ajax_PhieuDichVu_Default : basePage
         var CHUP_LoaiAlbum = Request["CHUP_LoaiAlbum"];
         var CHUP_YeuCauKhach = Request["CHUP_YeuCauKhach"];
         var CHUP_DaChuyenAnh = Request["CHUP_DaChuyenAnh"];
+        var CHUP_DaChuyenAnh_U = Request["CHUP_DaChuyenAnh_U"];
         var CHUP_NgayChuyenAnh = Request["CHUP_NgayChuyenAnh"];
         var TD_NhanVien = Request["TD_NhanVien"];
         var TD_NgayBatDau = Request["TD_NgayBatDau"];
@@ -42,12 +43,14 @@ public partial class lib_ajax_PhieuDichVu_Default : basePage
         var TD_KhoanPhaiThu = Request["TD_KhoanPhaiThu"];
         var PTS_NhanVien = Request["PTS_NhanVien"];
         var PTS_NhanVienDaNhan = Request["PTS_NhanVienDaNhan"];
+        var PTS_NhanVienDaNhan_U = Request["PTS_NhanVienDaNhan_U"];
         var PTS_NgayXemMaket = Request["PTS_NgayXemMaket"];
         var PTS_NgayBatDau = Request["PTS_NgayBatDau"];
         var PTS_NgayKetThuc = Request["PTS_NgayKetThuc"];
         var PTS_YeuCauKhachHang = Request["PTS_YeuCauKhachHang"];
         var PTS_HenSanPham = Request["PTS_HenSanPham"];
         var PTS_DaCoSanPham = Request["PTS_DaCoSanPham"];
+        var PTS_DaCoSanPham_U = Request["PTS_DaCoSanPham_U"];
         var PTS_NgayCoSanPham = Request["PTS_NgayCoSanPham"];
         var PTS_NgayLaySanPham = Request["PTS_NgayLaySanPham"];
         var PTS_AnhPhong = Request["PTS_AnhPhong"];
@@ -57,7 +60,10 @@ public partial class lib_ajax_PhieuDichVu_Default : basePage
         var PTS_AnhBanQuyCach = Request["PTS_AnhBanQuyCach"];
         var PTS_AnhBia = Request["PTS_AnhBia"];
         var PTS_CD3D = Request["PTS_CD3D"];
+        var PTS_CD3D_U = Request["PTS_CD3D_U"];
         var HoanThanh = Request["HoanThanh"];
+        var HoanThanh_U = Request["HoanThanh_U"];
+
         var Voucher = Request["Voucher"];
         var Voucher_Ma = Request["Voucher_Ma"];
         var NguoiTao = Request["NguoiTao"];
@@ -69,6 +75,9 @@ public partial class lib_ajax_PhieuDichVu_Default : basePage
         var Huy = Request["Huy"];
         var LyDoHuy = Request["LyDoHuy"];
         var NgayHuy = Request["NgayHuy"];
+        var TD_NgoaiCanh = Request["TD_NgoaiCanh"];
+        var TD_NgoaiCanh_U = Request["TD_NgoaiCanh_U"];
+
         var NhanVienHuy = Request["NhanVienHuy"];
 
         var DuyetEkip = Request["DuyetEkip"];
@@ -84,13 +93,14 @@ public partial class lib_ajax_PhieuDichVu_Default : basePage
         var PTS_NgayKetThuc_Gio = Request["PTS_NgayKetThuc_Gio"];
         
         
-        CHUP_DaChuyenAnh = string.IsNullOrEmpty(CHUP_DaChuyenAnh) ? "false" : "true";
-        PTS_NhanVienDaNhan = string.IsNullOrEmpty(PTS_NhanVienDaNhan) ? "false" : "true";
-        PTS_CD3D = string.IsNullOrEmpty(PTS_CD3D) ? "false" : "true";
-        PTS_DaCoSanPham = string.IsNullOrEmpty(PTS_DaCoSanPham) ? "false" : "true";
+        CHUP_DaChuyenAnh = !string.IsNullOrEmpty(CHUP_DaChuyenAnh_U) ? string.IsNullOrEmpty(CHUP_DaChuyenAnh) ? "false" : "true" : "";
+        PTS_NhanVienDaNhan = !string.IsNullOrEmpty(PTS_NhanVienDaNhan_U) ? string.IsNullOrEmpty(PTS_NhanVienDaNhan) ? "false" : "true" : "";
+        PTS_CD3D = !string.IsNullOrEmpty(PTS_CD3D_U) ? string.IsNullOrEmpty(PTS_CD3D) ? "false" : "true" : "";
+        PTS_DaCoSanPham = !string.IsNullOrEmpty(PTS_DaCoSanPham_U) ?  string.IsNullOrEmpty(PTS_DaCoSanPham) ? "false" : "true" : "";
         Huy = string.IsNullOrEmpty(Huy) ? "false" : "true";
-        HoanThanh = string.IsNullOrEmpty(HoanThanh) ? "false" : "true";
+        HoanThanh = !string.IsNullOrEmpty(HoanThanh_U) ? string.IsNullOrEmpty(HoanThanh) ? "false" : "true" : "";
         DuyetEkip = string.IsNullOrEmpty(DuyetEkip) ? "false" : "true";
+        TD_NgoaiCanh = !string.IsNullOrEmpty(TD_NgoaiCanh_U) ? string.IsNullOrEmpty(TD_NgoaiCanh) ? "false" : "true" : "";
 
         var refUrl = Request["refUrl"];
         if (!string.IsNullOrEmpty(refUrl))
@@ -126,6 +136,10 @@ public partial class lib_ajax_PhieuDichVu_Default : basePage
                             item.NgayDuyetEkip = DateTime.Now;
                             item.NguoiDuyet = Security.UserId;    
                         }
+                    }
+                    if (!string.IsNullOrEmpty(TD_NgoaiCanh))
+                    {
+                        item.TD_NgoaiCanh = Convert.ToBoolean(TD_NgoaiCanh);
                     }
                     if (!string.IsNullOrEmpty(DeNghiDuyetEkip))
                     {
@@ -170,7 +184,10 @@ public partial class lib_ajax_PhieuDichVu_Default : basePage
                     item.CHUP_DiaDiem = CHUP_DiaDiem;
                     item.CHUP_LoaiAlbum = CHUP_LoaiAlbum;
                     item.CHUP_YeuCauKhach = CHUP_YeuCauKhach;
-                    item.CHUP_DaChuyenAnh = Convert.ToBoolean(CHUP_DaChuyenAnh);
+                    if (!string.IsNullOrEmpty(CHUP_DaChuyenAnh))
+                    {
+                        item.CHUP_DaChuyenAnh = Convert.ToBoolean(CHUP_DaChuyenAnh);                        
+                    }
                     item.Huy = Convert.ToBoolean(Huy);
                     // Trang diem
                     if (!string.IsNullOrEmpty(TD_NhanVien))
@@ -230,8 +247,10 @@ public partial class lib_ajax_PhieuDichVu_Default : basePage
                     {
                         item.PTS_NgayKetThuc = Convert.ToDateTime(PTS_NgayKetThuc, new CultureInfo("vi-vn"));
                     }
-
-                    item.PTS_NhanVienDaNhan = Convert.ToBoolean(PTS_NhanVienDaNhan);
+                    if (!string.IsNullOrEmpty(PTS_NhanVienDaNhan))
+                    {
+                        item.PTS_NhanVienDaNhan = Convert.ToBoolean(PTS_NhanVienDaNhan);                        
+                    }
 
                     if (!string.IsNullOrEmpty(PTS_NgayXemMaket))
                     {
@@ -244,8 +263,15 @@ public partial class lib_ajax_PhieuDichVu_Default : basePage
                     item.PTS_AnhBan = PTS_AnhBan;
                     item.PTS_AnhBanQuyCach = PTS_AnhBanQuyCach;
                     item.PTS_AnhBanGhiChu = PTS_AnhBanGhiChu;
-                    item.PTS_CD3D = Convert.ToBoolean(PTS_CD3D);
-                    item.HoanThanh = Convert.ToBoolean(HoanThanh);
+                    if (!string.IsNullOrEmpty(PTS_CD3D))
+                    {
+                        item.PTS_CD3D = Convert.ToBoolean(PTS_CD3D);                        
+                    }
+
+                    if (!string.IsNullOrEmpty(HoanThanh))
+                    {
+                        item.HoanThanh = Convert.ToBoolean(HoanThanh);                        
+                    }
 
                     if (!string.IsNullOrEmpty(PTS_HenSanPham))
                     {
@@ -255,7 +281,10 @@ public partial class lib_ajax_PhieuDichVu_Default : basePage
                     {
                         item.PTS_NgayCoSanPham = Convert.ToDateTime(PTS_NgayCoSanPham, new CultureInfo("vi-vn"));
                     }
-                    item.PTS_DaCoSanPham = Convert.ToBoolean(PTS_DaCoSanPham);
+                    if (!string.IsNullOrEmpty(PTS_DaCoSanPham))
+                    {
+                        item.PTS_DaCoSanPham = Convert.ToBoolean(PTS_DaCoSanPham);                        
+                    }
 
                     if(!string.IsNullOrEmpty(TongTien))
                     {

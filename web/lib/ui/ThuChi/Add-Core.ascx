@@ -3,7 +3,6 @@
 <%@ Import Namespace="linh.common" %>
 <div class="form-horizontal" role="form">
     <input id="Id" style="display: none;" value="<%=Item.ID == Guid.Empty ? string.Empty  : Item.ID.ToString() %>" name="Id" type="text" />
-    <input style="display: none;" value="true" name="Thu" type="text" />
     <div class="form-group">
             <label for="SoPhieu" class="col-sm-2 control-label">Mã:</label>
             <div class="col-sm-4">
@@ -27,6 +26,7 @@
             </div>
         </div>
         <%if (Thu){ %>
+            <input style="display: none;" value="true" name="Thu" type="text" />
             <div class="form-group">
                 <label for="PDV_Ma" class="col-sm-2 control-label">Phiếu DV:</label>
                 <div class="col-sm-4">
@@ -89,7 +89,8 @@
             </div>
         <%}else{ %>
             <div class="form-group">
-                <label for="PGV_MaStr" class="col-sm-2 control-label">Phiếu giặt là:</label>
+            <input style="display: none;" value="false" name="Thu" type="text" />
+                    <label for="PGV_MaStr" class="col-sm-2 control-label">Phiếu giặt là:</label>
                 <div class="col-sm-4">
                     <div class="input-group">
                         <span class="input-group-addon btn autocomplete-btn">
@@ -144,8 +145,8 @@
         <label for="LoaiQuy" class="col-sm-2 control-label">Quỹ:</label>
         <div class="col-sm-4">
             <select name="LoaiQuy" id="LoaiQuy" class="form-control LoaiQuy">
-                <option value="1">Tiền mặt</option>
-                <option value="2">Tài khoản</option>
+                <option value="0">Tiền mặt</option>
+                <option value="1">Tài khoản</option>
             </select>
         </div>
     </div>

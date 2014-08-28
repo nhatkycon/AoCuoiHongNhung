@@ -10,6 +10,7 @@ public partial class lib_pages_PhieuDichVu_In_PhieuChonAnh : System.Web.UI.Page
     {
         var id = Request["ID"];
         var listDuyetAnh = new List<DuyetAnh>();
+        var listBaiHat = new List<BaiHat>();
         using (var con = DAL.con())
         {
             if (string.IsNullOrEmpty(id))
@@ -23,10 +24,12 @@ public partial class lib_pages_PhieuDichVu_In_PhieuChonAnh : System.Web.UI.Page
             {
                 Item = PhieuDichVuDal.SelectById(con, new Guid(id));
                 listDuyetAnh = DuyetAnhDal.SelectByPdvId(con, id);
+                listBaiHat = BaiHatDal.SelectByPdvId(con, id);
                 var logoStr = DanhMucDal.SelectByMa("BAOCAO-HEADER-THUCHI", con).Description;
                 Add.LogoStr = logoStr;
             }
             Add.ListDuyetAnh = listDuyetAnh;
+            Add.ListBaiHat = listBaiHat;
             Add.Item = Item; ;
         }
     }

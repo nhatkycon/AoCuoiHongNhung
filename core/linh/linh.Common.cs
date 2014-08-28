@@ -31,6 +31,12 @@ namespace linh.common
             var maLen = Ma.ToString().Length;
             return MaFull.PadRight(maLen) + Ma.ToString();
         }
+        public static string FormatMa(string Ma)
+        {
+            if (string.IsNullOrEmpty(Ma)) return string.Empty;
+            var maLen = Ma.ToString().Length;
+            return MaFull.PadRight(maLen) + Ma.ToString();
+        }
         public static string XmlSerializeToString(object objectInstance)
         {
             var serializer = new XmlSerializer(objectInstance.GetType());

@@ -36,12 +36,12 @@
                     <%   } %>               
                 <%} %>
             </ul>            
-            <form action="/lib/pages/TimKiem.aspx" class="navbar-form navbar-left">
+            <%--<form action="/lib/pages/TimKiem.aspx" class="navbar-form navbar-left">
                 <div class="form-group">
                     <input name="q" type="text" value="<%=Request["q"] %>" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-default globalSearchBtn"><i class="glyphicon glyphicon-search"></i></button>
-            </form>
+            </form>--%>
             <ul class="nav navbar-nav navbar-right">
               <li>
                   <%if(Security.IsAuthenticated()){ %>

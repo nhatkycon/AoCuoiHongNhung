@@ -48,7 +48,7 @@ public partial class lib_pages_ThuChi_List_Chi : System.Web.UI.Page
             var listLoai = DanhMucDal.SelectByLDMMa(con, "NDTC-CHI");
             DM_ID.List = listLoai;
             var pg =
-                ThuChiDal.pagerNormal(con, url, false, "TC_SoPhieu desc", q, Convert.ToInt32(size),false, ndtcId, tuNgay, denNgay);
+                ThuChiDal.pagerNormal(con, url, false, "TC_SoPhieu desc", q, Convert.ToInt32(size), false, ndtcId, tuNgay, denNgay);
             List.List = pg.List;
             paging = pg.Paging;
 

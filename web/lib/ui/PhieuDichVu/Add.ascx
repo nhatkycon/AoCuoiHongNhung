@@ -6,6 +6,8 @@
 <%@ Register Src="~/lib/ui/BaiHat/List-Edit.ascx" TagPrefix="uc2" TagName="ListEdit" %>
 <%@ Register Src="~/lib/ui/HeThong/ListPhieuDichVuTrangThai.ascx" TagPrefix="uc1" TagName="ListPhieuDichVuTrangThai" %>
 <%@ Register Src="~/lib/ui/ThuChi/List-PhieuDichVu.ascx" TagPrefix="uc1" TagName="ListPhieuDichVu" %>
+<%@ Register Src="~/lib/ui/ThuChi/List-PhieuDichVuView.ascx" TagPrefix="uc1" TagName="ListPhieuDichVuView" %>
+
 
 
 
@@ -249,6 +251,7 @@
                 <div class="form-group">
                     <label for="CHUP_DaChuyenAnh" class="col-sm-2 control-label">Nhận ảnh thô:</label>
                     <div class="col-sm-10">
+                        <input type="text" class="form-control" value="1" style="display: none;" name="CHUP_DaChuyenAnh_U"/>
                         <%if (Item.CHUP_DaChuyenAnh)
                         {%>
                             <input class="CHUP_DaChuyenAnh input-sm" id="CHUP_DaChuyenAnh" checked="checked" name="CHUP_DaChuyenAnh" type="checkbox"/>
@@ -353,7 +356,20 @@
                         <input id="TD_KhoanPhaiThu" type="text" class="form-control money-input TD_KhoanPhaiThu" value="<%=Item.TD_KhoanPhaiThu %>" name="TD_KhoanPhaiThu"/>
                     </div>
                 </div>
-
+                <div class="form-group">
+                    <label for="TD_NgoaiCanh" class="col-sm-2 control-label">Ngoại cảnh:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" value="1" style="display: none;" name="TD_NgoaiCanh_U"/>
+                        <%if (Item.TD_NgoaiCanh)
+                        {%>
+                            <input class="TD_NgoaiCanh input-sm" id="TD_NgoaiCanh" checked="checked" name="TD_NgoaiCanh" type="checkbox"/>
+                        <%}
+                        else
+                        {%>
+                            <input class="TD_NgoaiCanh input-sm" id="TD_NgoaiCanh" name="TD_NgoaiCanh" type="checkbox"/>
+                        <% } %>
+                    </div>
+                </div>
             </div>
             
             <hr/>
@@ -503,6 +519,7 @@
                 <div class="form-group">
                     <label for="PTS_NhanVienDaNhan" class="col-sm-2 control-label">Nhận việc:</label>
                     <div class="col-sm-2">
+                        <input type="text" class="form-control" value="1" style="display: none;" name="PTS_NhanVienDaNhan_U"/>
                         <%if (Item.PTS_NhanVienDaNhan)
                         {%>
                             <input class="PTS_NhanVienDaNhan input-sm" id="PTS_NhanVienDaNhan" checked="checked" name="PTS_NhanVienDaNhan" type="checkbox"/>
@@ -564,6 +581,7 @@
                 <div class="form-group">
                     <label for="PTS_CD3D" class="col-sm-2 control-label">CD3D:</label>
                     <div class="col-sm-2">
+                        <input type="text" class="form-control" value="1" style="display: none;" name="PTS_CD3D_U"/>
                         <%if (Item.PTS_CD3D)
                         {%>
                             <input class="PTS_CD3D input-sm" id="PTS_CD3D" checked="checked" name="PTS_CD3D" type="checkbox"/>
@@ -575,6 +593,7 @@
                     </div>
                     <label for="HoanThanh" class="col-sm-2 control-label">Hoàn thành:</label>
                     <div class="col-sm-2">
+                        <input type="text" class="form-control" value="1" style="display: none;" name="HoanThanh_U"/>
                         <%if (Item.HoanThanh)
                         {%>
                             <input class="HoanThanh input-sm" id="HoanThanh" checked="checked" name="HoanThanh" type="checkbox"/>
@@ -653,6 +672,7 @@
                 <div>
                     <label for="PTS_DaCoSanPham" class="col-sm-2 control-label">Đã có sản phẩm:</label>
                     <div class="col-sm-2">
+                        <input type="text" class="form-control" value="1" style="display: none;" name="PTS_DaCoSanPham_U"/>
                         <%if (Item.PTS_DaCoSanPham)
                         {%>
                             <input class="PTS_DaCoSanPham input-sm" id="PTS_DaCoSanPham" checked="checked" name="PTS_DaCoSanPham" type="checkbox"/>
@@ -732,13 +752,8 @@
         Phiếu thu
     </h3>
     <div class="panel panel-default">
-        <div class="panel-heading">
-            <a class="btn btn-primary" href="/lib/pages/ThuChi/Add-Thu.aspx?PDV_ID=<%=Item.ID %>">
-                Thêm phiếu thu
-            </a>
-        </div>
         <div class="panel-body">
-            <uc1:ListPhieuDichVu runat="server" ID="ListPhieuDichVu" />
+            <uc1:ListPhieuDichVuView runat="server" ID="ListPhieuDichVu" />
         </div>
     </div>
 

@@ -9,9 +9,6 @@
                 Mã
             </th>
             <th>
-                PDV
-            </th>
-            <th>
                 Người nhận
             </th>
             <th>

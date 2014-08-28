@@ -2,35 +2,35 @@
 <%@ Import Namespace="linh.common" %>
 <%@ Register Src="~/lib/ui/PhieuDichVuDichVu/List-PhieuDichVuPrint.ascx" TagPrefix="uc1" TagName="ListPhieuDichVuPrint" %>
 
-<div class="print-frame">
+<div class="print-frame-a5">
     <table width="100%" cellpadding="5" cellspacing="0">
         <tr>
-            <td valign="top" style="">
+            <td valign="top" style="width: 180px;">
                 <%=LogoStr %>
-            </td>
-            <td valign="top" style="width: 300px;">
+            </td>            
+            <td valign="top" style="width: 200px;">
                 <table>
                     <tr>
-                        <td style="width: 100px; text-align: right;">
+                        <td style="width: 50px; text-align: right;">
                             Số:                
                         </td>
-                        <td style="width: 200px; font-weight: bold;">
+                        <td style="width: 150px; font-weight: bold;">
                             <%=Lib.FormatMa(Item.Ma) %>                
                         </td>
                     </tr>
                     <tr>
-                        <td style="width: 100px; text-align: right;">
+                        <td style="text-align: right;">
                             Ngày:                
                         </td>
-                        <td style="width: 200px; font-weight: bold;">
+                        <td style="font-weight: bold;">
                             <%=Item.NgayTuVan.ToString("dd/MM/yyyy") %>                
                         </td>
                     </tr>
                     <tr>
-                        <td style="width: 100px; text-align: right;">
+                        <td style="text-align: right;">
                             Tư vấn:                
                         </td>
-                        <td style="width: 200px; font-weight: bold;">
+                        <td style="font-weight: bold;">
                             <%=Item.TuVanVien_Ten %>                
                         </td>
                     </tr>
@@ -38,9 +38,9 @@
             </td>
         </tr>
     </table>
-    <h1 style="text-align: center;">
-        PHIẾU DỊCH VỤ
-    </h1>
+        <h1 style="text-align: center;">
+            PHIẾU DỊCH VỤ
+        </h1>
     <table width="100%" cellpadding="5" cellspacing="0">
         <tr>
             <td style="text-align: right; width: 80px;">
@@ -137,7 +137,8 @@
                     <%} %>
                 </td>
                 <td>
-                    ĐĐ: <%=Item.CHUP_DiaDiem %><br/>
+                    <strong>Địa điểm:</strong> <%=Item.CHUP_DiaDiem %><br/>
+                    <strong>Yêu cầu:</strong> <%=Item.CHUP_YeuCauKhach %>
                 </td>
             </tr>
         <%} %>
@@ -155,8 +156,12 @@
                         <%=Item.TOC_NgayBatDau.ToString("dd/MM/yyyy") %>
                     <%} %>
                 </td>
-                <td>
-                
+                <td valign="top">
+                    <%if(Item.TD_NgoaiCanh){ %>                
+                        <strong>Địa điểm:</strong> <%=Item.TD_DiaDiem %><br/>
+                        <strong>K/C:</strong> <%=Item.TD_KhoangCach %> (<%=Lib.TienVietNam(Item.TD_PhiDiLai) %> )<br/>
+                        <strong>Phải thu:</strong> <%=Lib.TienVietNam(Item.TD_KhoanPhaiThu) %><br/>
+                    <%} %>
                 </td>
             </tr>
         <%} %>

@@ -43,6 +43,7 @@ namespace docsoft.entities
         #region Customs properties
         public String NguoiTao { get; set; }
         public ThuChi _ThuChi { get; set; }
+        public string NDTC_Ten { get; set; }
         #endregion
         public override BaseEntity getFromReader(IDataReader rd)
         {
@@ -259,9 +260,13 @@ namespace docsoft.entities
             {
                 Item.ngay = (String)(rd["ngay"]);
             }
-            if (rd.FieldExists("TC_NguoiTao"))
+            if (rd.FieldExists("NguoiTao_Ten"))
             {
-                Item.NguoiTao = (String)(rd["TC_NguoiTao"]);
+                Item.NguoiTao = (String)(rd["NguoiTao_Ten"]);
+            }
+            if (rd.FieldExists("NDTC_Ten"))
+            {
+                Item.NDTC_Ten = (String)(rd["NDTC_Ten"]);
             }
             Item._ThuChi = ThuChiDal.getFromReader(rd);
             return Item;

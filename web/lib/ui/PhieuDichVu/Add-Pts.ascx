@@ -104,6 +104,7 @@
                 <div class="form-group">
                     <label for="CHUP_DaChuyenAnh" class="col-sm-2 control-label">Nhận ảnh thô:</label>
                     <div class="col-sm-10">
+                        <input type="text" class="form-control" value="1" style="display: none;" name="CHUP_DaChuyenAnh_U"/>
                         <%if (Item.CHUP_DaChuyenAnh)
                         {%>
                             <input class="CHUP_DaChuyenAnh input-sm" id="CHUP_DaChuyenAnh" disabled checked="checked" type="checkbox"/>
@@ -150,6 +151,7 @@
                 <div class="form-group">
                     <label for="PTS_NhanVienDaNhan" class="col-sm-2 control-label">Nhận việc:</label>
                     <div class="col-sm-2">
+                        <input type="text" class="form-control" value="1" style="display: none;" name="PTS_NhanVienDaNhan_U"/>
                         <%if (Item.PTS_NhanVienDaNhan)
                         {%>
                             <input class="PTS_NhanVienDaNhan input-sm" id="PTS_NhanVienDaNhan" checked="checked" name="PTS_NhanVienDaNhan" type="checkbox"/>
@@ -211,6 +213,7 @@
                 <div class="form-group">
                     <label for="PTS_CD3D" class="col-sm-2 control-label">CD3D:</label>
                     <div class="col-sm-2">
+                        <input type="text" class="form-control" value="1" style="display: none;" name="PTS_CD3D_U"/>
                         <%if (Item.PTS_CD3D)
                         {%>
                             <input class="PTS_CD3D input-sm" id="PTS_CD3D" checked="checked" name="PTS_CD3D" type="checkbox"/>
@@ -222,6 +225,7 @@
                     </div>
                     <label for="HoanThanh" class="col-sm-2 control-label">Hoàn thành:</label>
                     <div class="col-sm-2">
+                        <input type="text" class="form-control" value="1" style="display: none;" name="HoanThanh_U"/>
                         <%if (Item.HoanThanh)
                         {%>
                             <input class="HoanThanh input-sm" id="HoanThanh" checked="checked" name="HoanThanh" type="checkbox"/>
@@ -297,6 +301,7 @@
                     </div>
                     <label for="PTS_DaCoSanPham" class="col-sm-2 control-label">Đã có sản phẩm:</label>
                     <div class="col-sm-2">
+                        <input type="text" class="form-control" value="1" style="display: none;" name="PTS_DaCoSanPham_U"/>
                         <%if (Item.PTS_DaCoSanPham)
                         {%>
                             <input class="PTS_DaCoSanPham input-sm" id="PTS_DaCoSanPham" checked="checked" name="PTS_DaCoSanPham" type="checkbox"/>

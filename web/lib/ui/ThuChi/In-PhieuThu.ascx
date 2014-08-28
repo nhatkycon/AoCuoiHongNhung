@@ -3,10 +3,11 @@
 <div class="print-frame">
    <table width="100%" cellpadding="5" cellspacing="0">
         <tr>
-            <td valign="top">
+            <td valign="top" style="width: 180px;">
                 <%=LogoStr %>
             </td>
             <td>
+                <br/><br />
                 <h1 style="text-align: center;">
                     PHIẾU THU
                 </h1> 
@@ -14,10 +15,10 @@
             <td valign="top" style="width: 200px;">
                 <table>
                     <tr>
-                        <td style="width: 100px; text-align: right;">
+                        <td style="width: 50px; text-align: right;">
                             Số:                
                         </td>
-                        <td style="width: 100px; font-weight: bold;">
+                        <td style="width: 150px; font-weight: bold;">
                             <%=Item.Ma %>                
                         </td>
                     </tr>
@@ -31,7 +32,7 @@
                     </tr>
                     <tr>
                         <td style="text-align: right;">
-                            Nhân viên:                
+                            NV:                
                         </td>
                         <td style="font-weight: bold;">
                             <%=Item.NguoiTao_Ten %>                
@@ -51,7 +52,7 @@
         Lý do: <strong><%=Item.Mota %></strong>
     </p>
     <p>
-        Số tiền: <strong><%=Lib.TienVietNam(Item.SoTien) %></strong> <i>(Viết bằng chữ: <%=Lib.So_chu(Item.SoTien) %> )</i>
+        Số tiền: <strong><%=Lib.TienVietNam(Item.SoTien) %></strong> <i>(Viết bằng chữ: <strong><%=Lib.So_chu(Item.SoTien) %></strong> )</i>
     </p>
     <p>
         Kèm theo: .......................................................... Chứng từ kế toán: ....................................
@@ -59,7 +60,6 @@
     <p style="text-align: right; font-style: italic;">
         Ngày <%=Item.NgayTrenPhieu.ToString("dd") %> tháng <%=Item.NgayTrenPhieu.ToString("MM") %> năm <%=Item.NgayTrenPhieu.Year %>
     </p>
-    <br/>
     <table width="100%" cellpadding="5" cellspacing="0">
         <tr>
             <td style="width: 20%; text-align: center;">

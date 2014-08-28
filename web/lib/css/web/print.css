@@ -1,13 +1,22 @@
-﻿* {
+﻿body {
+    padding: 0px;
+    margin: 0px;
+}
+
+* {
     line-height: 100%;
-    font-size: 14px;
+    font-size: 12px;
+}
+h1 {
+    font-size: 22px;
 }
 .print-frame {
-    border: dashed 1px #000;
     padding: 10px 20px;
     padding-bottom: 50px;
     clear: both;
     float: left;
+    width: 650px;
+    height: 350px;
 }
 table {
     clear: both;
@@ -44,4 +53,15 @@ table.border td, table.border th
 }
 .ChonAnh-PrintItem-Ten {
     padding: 5px 10px;
+}
+.print-frame-a5 {
+    clear: both;
+    float: left;
+    width: 440px;
+    height: 650px;
+    top: -100px;
+    left: 120px;
+    position: absolute;
+    -webkit-transform: rotate(-90deg); -moz-transform:rotate(-90deg);
+     filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }

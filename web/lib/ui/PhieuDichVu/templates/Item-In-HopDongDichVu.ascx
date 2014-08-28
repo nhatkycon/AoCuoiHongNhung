@@ -3,7 +3,7 @@
 <div class="print-frame">
     <table width="100%" cellpadding="5" cellspacing="0">
         <tr>
-            <td valign="top" style="width: 200px;">
+            <td valign="top" style="width: 180px;">
                 <%=LogoStr %>
             </td>
             <td valign="top">
@@ -34,51 +34,46 @@
     </p>
     <p>
         <strong>Bên A:</strong>
-        <strong><i><%=Item._KhachHang.XungHo %></i> <%=Item._KhachHang.Ten %></strong>
     </p>
-    <p>
-        CMTND <strong><%=Item._KhachHang.CMND %></strong> Công an <strong><%=Item._KhachHang.CMND_NoiCap %></strong> cấp ngày <strong><%=Item._KhachHang.CMND_NgayCap== DateTime.MinValue ? "" : Item._KhachHang.CMND_NgayCap.ToString("dd/MM/yyyy") %></strong>
-    </p>
-    <p>
-        Điện thoại <strong><%=Item._KhachHang.Mobile %></strong> Địa chỉ <strong><%=Item._KhachHang.DiaChi %></strong>
-    </p>
+    <div style="padding-left: 20px;">
+        <p>
+            <strong><i><%=Item._KhachHang.XungHo %></i> <%=Item._KhachHang.Ten %></strong>        
+        </p>
+        <p>
+            CMTND <strong><%=Item._KhachHang.CMND %></strong> Công an <strong><%=Item._KhachHang.CMND_NoiCap %></strong> cấp ngày <strong><%=Item._KhachHang.CMND_NgayCap== DateTime.MinValue ? "" : Item._KhachHang.CMND_NgayCap.ToString("dd/MM/yyyy") %></strong>
+        </p>
+        <p>
+            Điện thoại <strong><%=Item._KhachHang.Mobile %></strong> Địa chỉ <strong><%=Item._KhachHang.DiaChi %></strong>
+        </p>
+    </div>
     <p>
         <strong>Bên B </strong>
         :<strong> CÔNG TY TNHH ẢNH VIỆN ÁO CƯỚI HỒNG NHUNG</strong>
     </p>
-    <p>
-        Địa chỉ : <strong>16 K1 - Yên Lãng - Đống Đa - Hà Nội</strong>
-    </p>
-    <p>
-        Điện thoại : <strong>(04) 85 89 83 18 Hotline: 0962 31 81 31</strong>
-    </p>
-    <p>
-        Người đại diện : <strong>Nguyễn Thị Nhung</strong>
-    </p>
+    <div style="padding-left: 20px;">
+        <p>
+            Địa chỉ : <strong>16 K1 - Yên Lãng - Đống Đa - Hà Nội</strong>
+        </p>
+        <p>
+            Điện thoại : <strong>(04) 85 89 83 18 Hotline: 0962 31 81 31</strong>
+        </p>
+        <p>
+            Người đại diện : <strong>Nguyễn Thị Nhung</strong>
+        </p>
+    </div>
     <p>
         Bên A và bên B đồng ý hợp tác lên kế hoạch chụp ảnh cho bên A. Nội dung bao gồm:
     </p>
     <p>
         <strong>Tổng gói dịch vụ</strong>
-        : <strong><%=Lib.TienVietNam(Item.TongTien) %></strong> vnđ
+        : <strong><%=Lib.TienVietNam(Item.TongTien) %> vnđ</strong>
     </p>
     <p>
         <strong>
             <i>(Bằng chữ: <%=Lib.So_chu(Item.TongTien) %>)</i>
         </strong>
     </p>
-    <p>
-        Kích cỡ Album <%=Item.CHUP_LoaiAlbum %>.......Ảnh phóng: <%=Item.PTS_AnhPhong %>.......
-    </p>
-    <p>
-        Ảnh để bàn <%=Item.PTS_AnhBan %>.Bìa Album ……………… Mã khung………………
-    </p>
-    <p>
-        Áo dài ăn hỏi ……………..đỡ tráp……………..Áo ngày cưới………………………
-    </p>
-    <p>
-        Địa điểm chụp ảnh: <strong><%=Item.CHUP_DiaDiem %></strong>
-    </p>
+    
     <p>
         1/ Bên A đặt cọc trước <strong><%=Lib.TienVietNam(Item.DatCoc) %></strong> vnđ <strong><i>(Bằng chữ: <%=Lib.So_chu(Item.DatCoc) %>)</i></strong> để bên B lên kế hoach chụp ( Nếu bên A hủy hợp đồng thì số tiền này sẽ không hoàn lại)
     </p>

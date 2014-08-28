@@ -226,6 +226,10 @@ var bxVinhFn = {
                 itemEl.datetimepicker({
                     language: 'vi-Vn'
                 });
+                var input = itemEl.find('input');
+                input.focus(function () {
+                    input.next().click();
+                });
             });
             
             var autoCompleteElements = $('.form-autocomplete-input');
