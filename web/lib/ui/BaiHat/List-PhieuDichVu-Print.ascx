@@ -3,7 +3,7 @@
 <table class="table table-striped table-bordered table-hover border">
     <thead >
         <tr>
-            <th style="width: 60px;">
+            <th style="width: 30px;">
                 Thứ tự
             </th>
             <th>

@@ -33,7 +33,11 @@
                             <uc2:DanhMucListByLdmMa_1 ControlName="DM_ID" ControlId="DM_ID" ID="DM_ID" runat="server" />                
                         </div>
                     </div>
-                    
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <input name="Gia" placeholder="Giá: 5000000" class="form-control"/>
+                        </div>
+                    </div>
                     <div class="col-sm-2">
                         <div class="pull-right">
                             <div class="input-group">

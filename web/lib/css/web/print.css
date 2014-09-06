@@ -45,22 +45,24 @@ table.border td, table.border th
 .ChonAnh-PrintItem {
     border: solid 1px #aaa;
     display: inline-block;
+    margin-right: 2px;
 }
 .ChonAnh-PrintItem-Stt {
     display: inline-block;
     border-right: solid 1px #aaa;
-    padding: 5px 10px;
+    padding: 2px 2px;
+    font-weight: bold;
 }
 .ChonAnh-PrintItem-Ten {
-    padding: 5px 10px;
+    padding: 2px 2px;
 }
 .print-frame-a5 {
     clear: both;
     float: left;
-    width: 440px;
+    width: 540px;
     height: 650px;
-    top: -100px;
-    left: 120px;
+    top: -50px;
+    left: 60px;
     position: absolute;
     -webkit-transform: rotate(-90deg); -moz-transform:rotate(-90deg);
      filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);

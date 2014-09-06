@@ -9,7 +9,7 @@
                         <i class="glyphicon glyphicon-chevron-down"></i>
                     </span>
                     <input data-pdvid="<%=Item.ID %>" type="text" 
-                        data-cached="1" 
+                        data-cached="0" 
                         data-src="/lib/ajax/HangHoa/Default.aspx" 
                         data-savedUrl="/lib/ajax/PhieuDichVuDichVu/Default.aspx" 
                         class="form-control HH_Ten form-autocomplete-input-pdvDv" value=""/>

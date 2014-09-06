@@ -8,7 +8,7 @@
                 <i class="glyphicon glyphicon-chevron-down"></i>
             </span>
             <input data-id="<%=Item.ID %>" type="text" 
-                data-cached="1" data-src="/lib/ajax/HangHoa/Default.aspx" 
+                data-cached="0" data-src="/lib/ajax/HangHoa/Default.aspx" 
                 data-savedUrl="/lib/ajax/GoiDichVu/Default.aspx" 
                 data-gid="<%=Item.GDV_ID %>"
                 class="form-control HH_Ten form-autocomplete-input-gdvCt" value="<%=Item.HH_Ten %>"/>

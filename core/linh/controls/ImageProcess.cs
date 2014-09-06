@@ -15,17 +15,17 @@ namespace linh.controls
     public class ImageProcess: IDisposable
     {
         public string CacheKey { get; set; }
-        public byte[] Bytes
-        {
-            get
-            {
-                return (byte[])(HttpRuntime.Cache[CacheKey]);
-            }
-            set
-            {
-                HttpRuntime.Cache.Insert(CacheKey, value, null);
-            }
-        }
+        public byte[] Bytes { get; set; }
+        //{
+        //    get
+        //    {
+        //        return (byte[])(HttpRuntime.Cache[CacheKey]);
+        //    }
+        //    set
+        //    {
+        //        HttpRuntime.Cache.Insert(CacheKey, value, null);
+        //    }
+        //}
         public int Width { get; set; }
         public int Heigth { get; set; }
         public string Mime { get; set; }
@@ -56,6 +56,20 @@ namespace linh.controls
             }
 
         }
+
+
+        public ImageProcess(Bitmap bitmap, string cacheKey)
+        {
+            CacheKey = cacheKey;
+            Mime = getMimeType(bitmap);
+            var ms = new MemoryStream();
+            bitmap.Save(ms, getImageFormat(Mime));
+            Bytes = ms.ToArray();
+            Width = bitmap.Width;
+            Heigth = bitmap.Height;
+            Ext = getExtionsion(Mime);
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -66,9 +80,12 @@ namespace linh.controls
             CacheKey = cacheKey;
             using (Image bmp = Bitmap.FromFile(fileName))
             {
+                Mime = getMimeType(bmp);
+                var ms = new MemoryStream();
+                bmp.Save(ms, getImageFormat(Mime));
+                Bytes = ms.ToArray();
                 Width = bmp.Width;
                 Heigth = bmp.Height;
-                Mime = getMimeType(bmp);
                 Ext = getExtionsion(Mime);
             }
         }
@@ -153,60 +170,95 @@ namespace linh.controls
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="_width"></param>
-        public void Resize(int _width)
+        /// <param name="width"></param>
+        public void Resize(int width)
         {
-            using (Image img = convertFromByte(Bytes))
+            using (var img = convertFromByte(Bytes))
             {
                 Single nPercentW = 0;
-                nPercentW = Convert.ToSingle(_width) / Convert.ToSingle(Width);
-                int _height = Convert.ToInt32(Heigth * nPercentW);
-                using (Bitmap bmp = new Bitmap(_width, _height))
+                nPercentW = Convert.ToSingle(width) / Convert.ToSingle(Width);
+                var height = Convert.ToInt32(Heigth * nPercentW);
+                using (var bmp = new Bitmap(width, height))
                 {
                     bmp.SetResolution(img.HorizontalResolution, img.VerticalResolution);
-                    using (Graphics grp = Graphics.FromImage(bmp))
+                    using (var grp = Graphics.FromImage(bmp))
                     {
                         grp.CompositingMode = CompositingMode.SourceCopy;
                         grp.PixelOffsetMode = PixelOffsetMode.Half;
                         grp.CompositingQuality = CompositingQuality.HighSpeed;
                         grp.InterpolationMode = InterpolationMode.HighQualityBicubic;
                         grp.SmoothingMode = SmoothingMode.HighQuality;
-                        grp.DrawImage(img, new Rectangle(0, 0, _width, _height));
-                        MemoryStream ms = new MemoryStream();
+                        grp.DrawImage(img, new Rectangle(0, 0, width, height));
+                        var ms = new MemoryStream();
                         bmp.Save(ms, getImageFormat(Mime));
                         localBytes = ms.ToArray();
                     }
                 }
             }
         }
+        public void ResizeHeight(int height)
+        {
+            using (var img = convertFromByte(Bytes))
+            {
+                Single nPercentH = 0;
+                nPercentH = Convert.ToSingle(height) / Convert.ToSingle(Heigth);
+                var width = Convert.ToInt32(Width * nPercentH);
+                using (var bmp = new Bitmap(width, height))
+                {
+                    bmp.SetResolution(img.HorizontalResolution, img.VerticalResolution);
+                    using (var grp = Graphics.FromImage(bmp))
+                    {
+                        grp.CompositingMode = CompositingMode.SourceCopy;
+                        grp.PixelOffsetMode = PixelOffsetMode.Half;
+                        grp.CompositingQuality = CompositingQuality.HighSpeed;
+                        grp.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                        grp.SmoothingMode = SmoothingMode.HighQuality;
+                        grp.DrawImage(img, new Rectangle(0, 0, width, height));
+                        var ms = new MemoryStream();
+                        bmp.Save(ms, getImageFormat(Mime));
+                        localBytes = ms.ToArray();
+                    }
+                }
+            }
+        }
+        public void AddWaterMark(string watermark)
+        {
+            using (var image = convertFromByte(localBytes))
+            using (var watermarkImage = Image.FromFile(watermark))
+            using (var imageGraphics = Graphics.FromImage(image))
+            using (var watermarkBrush = new TextureBrush(watermarkImage))
+            {
+                int x = (image.Width - watermarkImage.Width - 10);
+                int y = (image.Height - watermarkImage.Height -10);
+                watermarkBrush.TranslateTransform(x, y);
+                imageGraphics.FillRectangle(watermarkBrush, new Rectangle(new Point(x, y), new Size(watermarkImage.Width + 1, watermarkImage.Height)));
+                //image.Save(@"C:\Users\Public\Pictures\Sample Pictures\Desert_watermark.jpg");
+                var ms = new MemoryStream();
+                image.Save(ms, getImageFormat(Mime));
+                localBytes = ms.ToArray();
+            }
+        }
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="_width"></param>
-        /// <param name="_height"></param>
-        public void Crop(int _width, int _height)
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        public void Crop(int width, int height)
         {
             using (Image img = convertFromByte(Bytes))
             {
                 Single nPercent = 0;
                 Single nPercentW = 0;
                 Single nPercentH = 0;
-                nPercentW = Convert.ToSingle(_width) / Convert.ToSingle(Width);
-                nPercentH = Convert.ToSingle(_height) / Convert.ToSingle(Heigth);
-                if (nPercentH < nPercentW)
-                {
-                    nPercent = nPercentW;
-                }
-                else
-                {
-                    nPercent = nPercentH;
-                }
-                int desWidth = Convert.ToInt32(Width * nPercent);
-                int desHeight = Convert.ToInt32(Heigth * nPercent);
-                using (Bitmap bmp = new Bitmap(_width, _height))
+                nPercentW = Convert.ToSingle(width) / Convert.ToSingle(Width);
+                nPercentH = Convert.ToSingle(height) / Convert.ToSingle(Heigth);
+                nPercent = nPercentH < nPercentW ? nPercentW : nPercentH;
+                var desWidth = Convert.ToInt32(Width * nPercent);
+                var desHeight = Convert.ToInt32(Heigth * nPercent);
+                using (var bmp = new Bitmap(width, height))
                 {
                     bmp.SetResolution(img.HorizontalResolution, img.VerticalResolution);
-                    using (Graphics grp = Graphics.FromImage(bmp))
+                    using (var grp = Graphics.FromImage(bmp))
                     {
                         grp.CompositingMode = CompositingMode.SourceCopy;
                         grp.PixelOffsetMode = PixelOffsetMode.Half;
@@ -214,7 +266,7 @@ namespace linh.controls
                         grp.InterpolationMode = InterpolationMode.HighQualityBicubic;
                         grp.SmoothingMode = SmoothingMode.HighQuality;
                         grp.DrawImage(img, new Rectangle(0, 0, desWidth, desHeight));
-                        MemoryStream ms = new MemoryStream();
+                        var ms = new MemoryStream();
                         bmp.Save(ms, getImageFormat(Mime));
                         localBytes = ms.ToArray();
                     }
@@ -239,13 +291,26 @@ namespace linh.controls
         /// </summary>
         public void Save()
         {
-            using (Image img = convertFromByte(localBytes==null? Bytes : localBytes))
+            using (var img = convertFromByte(localBytes==null? Bytes : localBytes))
             {
                 c.Response.ClearContent();
                 c.Response.ContentType = getMimeType(img);
-                MemoryStream ms=new MemoryStream();
+                var ms=new MemoryStream();
                 img.Save(ms,getImageFormat(Mime));
                 c.Response.OutputStream.Write(ms.ToArray(), 0, Convert.ToInt32(ms.Length));
+                c.Response.Cache.SetValidUntilExpires(true);
+                c.Response.Cache.SetCacheability(HttpCacheability.Public);
+                c.Response.Cache.SetExpires(DateTime.Now.AddMonths(1));
+                //c.Response.Cache.SetLastModified(DateTime.Now.AddMonths(-1));
+
+                //var textIfModifiedSince = c.Request.Headers["If-Modified-Since"];
+                //if (!string.IsNullOrEmpty(textIfModifiedSince))
+                //{
+                //    c.Response.Status = "304 Not Modified";
+                //}
+                //c.Response.StatusCode = 304;
+                //c.Response.StatusDescription = "Not Modified";
+                //c.Response.Cache.SetLastModified(DateTime.Now.AddDays(-10));
                 ms.Close();
                 c.Response.End();
             }

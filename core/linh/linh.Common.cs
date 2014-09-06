@@ -65,6 +65,10 @@ namespace linh.common
         {
             return (T)XmlDeserializeFromString(objectData, typeof(T));
         }
+        public static string ImgDomain()
+        {
+            return ConfigurationManager.AppSettings["ImgDomain"];
+        }
         public static object XmlDeserializeFromXml(XmlDocument objectXml, Type type)
         {
             var serializer = new XmlSerializer(type);

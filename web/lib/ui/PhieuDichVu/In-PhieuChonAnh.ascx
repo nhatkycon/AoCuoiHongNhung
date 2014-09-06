@@ -12,16 +12,16 @@
             </td>
             <td>
                 <h1 style="text-align: center;">
-                    PHIẾU CHỌN ẢNH
+                    PHIẾU <br />CHỌN ẢNH
                 </h1>
             </td>
-            <td valign="top" style="width: 200px;">
+            <td valign="top" style="width: 150px;">
                 <table>
                     <tr>
                         <td style="width: 50px; text-align: right;">
                             Số:                
                         </td>
-                        <td style="width: 150px; font-weight: bold;">
+                        <td style="width: 100px; font-weight: bold;">
                             <%=Lib.FormatMa(Item.Ma) %>                
                         </td>
                     </tr>

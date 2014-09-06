@@ -7,6 +7,26 @@ jQuery(function () {
     bxVinhFn.init();
     
 });
+// FIX for clone() with textarea inside
+(function (original) {
+    jQuery.fn.clone = function () {
+        var result = original.apply(this, arguments),
+            my_textareas = this.find('textarea').add(this.filter('textarea')),
+            result_textareas = result.find('textarea').add(result.filter('textarea')),
+            my_selects = this.find('select').add(this.filter('select')),
+            result_selects = result.find('select').add(result.filter('select'));
+
+        for (var i = 0, l = my_textareas.length; i < l; ++i) $(result_textareas[i]).val($(my_textareas[i]).val());
+        for (var i = 0, l = my_selects.length; i < l; ++i) {
+            for (var j = 0, m = my_selects[i].options.length; j < m; ++j) {
+                if (my_selects[i].options[j].selected === true) {
+                    result_selects[i].options[j].selected = true;
+                }
+            }
+        }
+        return result;
+    };
+})(jQuery.fn.clone);
 
 var bxVinhFn = {
     init:function () {
@@ -215,6 +235,7 @@ var bxVinhFn = {
             bxVinhFn.normalFormFn.headerFn();
             bxVinhFn.normalFormFn.addPhieuDichVuFn();
             bxVinhFn.normalFormFn.addXuatNhapSanPhamFn();
+            bxVinhFn.normalFormFn.initDuyetAnhView();
         }
         , add: function () {
             var pnl = $('.Normal-Pnl-Add');
@@ -503,7 +524,7 @@ var bxVinhFn = {
         }
         , addPhieuDichVuFn:function () {
             var pnl = $('.PhieuDichVu-Pnl-Add');
-            if ($(pnl).length < 1) return;
+            //if ($(pnl).length < 1) return;
 
 
 
@@ -536,8 +557,11 @@ var bxVinhFn = {
                 });
                 bxVinhFn.utils.autoCompleteSearch(itemEl, src, src
                     , function (event, ui) {
-                        
-                        itemEl.val('');
+
+                        setTimeout(function() {
+                            itemEl.val('');
+                            itemEl.focus();
+                        },500);
                         $.ajax({
                             url: savedUrl
                             , data: {
@@ -611,6 +635,19 @@ var bxVinhFn = {
                             }
                     });
                 });
+
+                phieuDichVuDichVuPnl.off('keyup', '.PhieuDichVuDichVu-ThemChiTiet-Input-El');
+                phieuDichVuDichVuPnl.on('keyup', '.PhieuDichVuDichVu-ThemChiTiet-Input-El', function () {
+                    var item = $(this);
+                    var pitem = item.parent().parent();
+                    var soluong = pitem.find('.SoLuong').val();
+                    var gia = pitem.find('.Gia').val();
+                    var tienEl = pitem.find('.Tien');
+                    var tongTien = parseInt(bxVinhFn.utils.getNumberFormMoney(soluong)) * parseInt(bxVinhFn.utils.getNumberFormMoney(gia));
+                    tienEl.val(bxVinhFn.utils.convertNumberToMoney(tongTien));
+                    bxVinhFn.normalFormFn.tinhToanPhieuDichVuFn();
+                });
+
                 $(phieuDichVuDichVuPnl).on('blur', '.PhieuDichVuDichVu-ThemChiTiet-Input', function () {
                     var item = $(this);
                     var pitem = item.parent().parent();
@@ -746,10 +783,10 @@ var bxVinhFn = {
                 });
             }
 
-
-            var phieuDichVuBaiHatAddPnl = pnl.find('.PhieuDichVuBaiHat-AddPnl');
-            var phieuDichVuBaiHat = pnl.find('.PhieuDichVuBaiHat-Pnl');
+            var phieuDichVuBaiHat = $('.PhieuDichVuBaiHat-Pnl');
+            var phieuDichVuBaiHatAddPnl = phieuDichVuBaiHat.find('.PhieuDichVuBaiHat-AddPnl');
             if ($(phieuDichVuBaiHatAddPnl).length > 0) {
+                console.log('Passed');
                 var btnBaiHat = phieuDichVuBaiHatAddPnl.find('.addBtn');
                 btnBaiHat.click(function () {
                     var savedUrl = phieuDichVuBaiHatAddPnl.attr('data-savedUrl');
@@ -821,6 +858,9 @@ var bxVinhFn = {
         , tinhToanPhieuDichVuFn:function () {
             var total = 0;
             var pnl = $('.PhieuDichVu-Pnl-Add');
+            
+
+
             var tongEl = pnl.find('.TongTien');
             var conNoEl = pnl.find('.ConNo');
             var thanhToanEl = pnl.find('.ThanhToan');
@@ -828,11 +868,16 @@ var bxVinhFn = {
                 var tien = $(j).val();
                 total += parseInt(bxVinhFn.utils.getNumberFormMoney(tien));
             });
+
+
+
             tongEl.val(bxVinhFn.utils.convertNumberToMoney(total));
             var thanhToan = bxVinhFn.utils.getNumberFormMoney(thanhToanEl.val());
             thanhToan = parseInt(thanhToan);
             var conNo = total - thanhToan;
             conNoEl.val(bxVinhFn.utils.convertNumberToMoney(conNo));
+            
+
             
         }
         , addXuatNhapSanPhamFn: function () {
@@ -866,7 +911,10 @@ var bxVinhFn = {
                 bxVinhFn.utils.autoCompleteSearch(itemEl, src, src
                     , function (event, ui) {
 
-                        itemEl.val('');
+                        setTimeout(function () {
+                            itemEl.val('');
+                            itemEl.focus();
+                        }, 500);
                         $.ajax({
                             url: savedUrl
                             , data: {
@@ -976,5 +1024,329 @@ var bxVinhFn = {
              });
              
          }
+         , initDuyetAnhView: function () {
+
+             var pickPhieuDichVu = $('.pickPhieuDichVu');
+             if ($(pickPhieuDichVu).length > 0) {
+                 var src = pickPhieuDichVu.attr('data-src');
+                 bxVinhFn.utils.autoCompleteSearch(pickPhieuDichVu, src, pickPhieuDichVu
+                    , function (event, ui) {
+                        document.location.href = '/lib/pages/DuyetAnh/View.aspx?ID=' + ui.item.id;
+                    }
+                    , false
+                );
+                 pickPhieuDichVu.unbind('click').click(function () {
+                     pickPhieuDichVu.autocomplete('search', '');
+                 });
+             }
+
+             var pnl = $('.DuyetAnh-View');
+             if ($(pnl).length < 1) return;
+
+             var pdvId = pnl.attr('data-pdvId');
+
+             var swipeReady = false;
+
+             var duyetAnhList = pnl.find('.DuyetAnh-View-List');
+             var duyetAnhFs = pnl.find('.DuyetAnh-View-Fs');
+
+             var listAnhDaChon = duyetAnhList.find('#ListAnhDaChon');
+             var chinhSua = duyetAnhList.find('#ChinhSua');
+             var listBaiHat = duyetAnhList.find('#ListBaiHat');
+             var listAnh = duyetAnhList.find('#ListAnh');
+
+             $('.DuyetAnh-Item-Img').lazyload({
+                 container: $("#ListAnh")
+             });
+             
+
+             $('.DuyetAnh-ToolBar-Item').click(function () {
+                 var item = $(this);
+                 var target = item.attr('data-target');
+                 var targetElement = $(target);
+                 if (targetElement.is(':hidden')) {
+                     $('.DuyetAnh-View-Body').hide();
+                     targetElement.show();
+                 }
+             });
+
+             
+             var savedUrl = '/lib/ajax/DuyetAnh/Default.aspx';
+
+             var items = listAnh.find('.DuyetAnh-Item');
+
+             setTimeout(function() {
+                 listAnhDaChon.html('');
+                 listAnh.find('.DuyetAnh-Item-Active').clone().appendTo(listAnhDaChon);
+                 listAnhDaChon.find('.ThuTu').sort(function (a, b) {
+                     return $(a).val() > $(b).val() ? 1 : -1;
+                 }, function () {
+                     return this.parentNode.parentNode;
+                 });
+                 listAnhDaChon.find('img').each(function(i, j) {
+                     var item = $(j);
+                     item.attr('src', item.attr('data-original'));
+                 });
+                 
+             }, 500);
+
+             listAnh.on('click', '.DuyetAnh-Item-AddBtn', function () {
+                 var btn = $(this);
+                 var item = btn.parent().parent();
+                 var tenLbl = item.find('.DuyetAnh-Item-Ten-Lbl');
+                 var subAct = '';
+                 if (item.hasClass('DuyetAnh-Item-Active')) {
+                     item.removeClass('DuyetAnh-Item-Active');
+                     subAct = 'removeByTen';
+                 } else {
+                     item.addClass('DuyetAnh-Item-Active');
+                     subAct = 'saveQuick';
+                 }
+
+                 var totalSelected = listAnh.find('.DuyetAnh-Item-Active').length;
+                 $('.TotalSelected').html(totalSelected);
+                 listAnhDaChon.html('');
+                 listAnh.find('.DuyetAnh-Item-Active').clone().appendTo(listAnhDaChon);
+                 listAnhDaChon.find('.ThuTu').sort(function (a, b) {
+                     return $(a).val() > $(b).val() ? 1 : -1;
+                 }, function () {
+                     return this.parentNode.parentNode;
+                 });
+
+
+                 var data = [];
+                 data.push({ name: 'subAct', value: subAct });
+                 data.push({ name: 'DUYETANH_PDV_ID', value: pdvId });
+                 data.push({ name: 'Ten', value: tenLbl.html() });
+
+                 //bxVinhFn.utils.loader('Đang lưu', true);
+
+                 $.ajax({
+                     url: savedUrl
+                     , type: 'POST'
+                     , data: data
+                    , success: function (_rs) {
+                        if (subAct == 'saveQuick') {
+                            item.find('.DuyetAnh-Item-Footer').attr('data-id', _rs);
+                        }
+                        else {
+                            item.find('.DuyetAnh-Item-Footer').attr('data-id', '');
+                        }
+                    }
+                    , error: function (dt, errorThrown) {
+                        alert('request failed :' + errorThrown);
+                    }
+                 });
+             });
+             
+             listAnhDaChon.on('click', '.DuyetAnh-Item-AddBtn', function () {
+                 var btn = $(this);
+                 var item = btn.parent().parent();
+                 var id = btn.attr('data-id');
+                 
+
+                 var tenLbl = item.find('.DuyetAnh-Item-Ten-Lbl');
+                 var subAct = '';
+                 if (item.hasClass('DuyetAnh-Item-Active')) {
+                     item.removeClass('DuyetAnh-Item-Active');
+                     subAct = 'removeByTen';
+                 } else {
+                     item.addClass('DuyetAnh-Item-Active');
+                     subAct = 'saveQuick';
+                 }
+
+
+                 var data = [];
+                 data.push({ name: 'subAct', value: subAct });
+                 data.push({ name: 'DUYETANH_PDV_ID', value: pdvId });
+                 data.push({ name: 'Ten', value: tenLbl.html() });
+
+                 var itemInListAnh = listAnh.find('.DuyetAnh-Item[data-id="' + id + '"]');
+                 itemInListAnh.removeClass('DuyetAnh-Item-Active');
+                 itemInListAnh.find('.DuyetAnh-Item-Footer').attr('data-id', '');
+                 
+                 item.remove();
+                 var totalSelected = listAnhDaChon.find('.DuyetAnh-Item-Active').length;
+                 $('.TotalSelected').html(totalSelected);
+
+                 $.ajax({
+                     url: savedUrl
+                     , type: 'POST'
+                     , data: data
+                    , success: function (_rs) {
+                    }
+                    , error: function (dt, errorThrown) {
+                        alert('request failed :' + errorThrown);
+                    }
+                 });
+             });
+             
+
+             listAnh.on('click', 'img', function () {
+                 var btn = $(this);
+                 var item = btn.parent();
+                 var id = item.attr('data-id');
+                 var ten = btn.attr('data-ten');
+                 
+                 duyetAnhList.hide();
+                 duyetAnhFs.show();
+                 duyetAnhFs.attr('data-id', id);
+                 duyetAnhFs.find('h3').html(ten);
+                 
+                 var index = $(items).index(item);
+                 if (!swipeReady) {
+                     swiper = new Swipe(document.getElementById('slider'), {
+                         startSlide: index,
+                         continuous: true,
+                         disableScroll: false,
+                         stopPropagation: false,
+                         callback: function () {
+                             var _index = swiper.getPos();
+                             var itemInListAnh = items.eq(_index);
+                             var newId = itemInListAnh.attr('data-id');
+                             var newTen = itemInListAnh.find('img').attr('data-ten');
+                             duyetAnhFs.attr('data-id', newId);
+                             duyetAnhFs.find('h3').html(newTen);
+                         },
+                         transitionEnd: function (_index, elem) {
+                             
+                         }
+                     });
+                     $('.Fs-item-img').lazyload({
+                         container: $(".swipe-wrap")
+                     });
+                 }
+                 else {
+                     swiper.slide(index);
+                 }
+             });
+            
+             listAnhDaChon.on('click', 'img', function () {
+                 var btn = $(this);
+                 var item = btn.parent();
+                 var id = item.attr('data-id');
+                 if (id == '') return;
+                 var sysnItem = listAnh.find('.DuyetAnh-Item[data-id="' + id + '"]');
+                 sysnItem.find('img').click();
+             });
+
+
+             listAnh.on('blur', '.DuyetAnh-Item-InputControl', function () {
+                 var item = $(this);
+                 var pItem = item.parent();
+                 var id = pItem.attr('data-id');
+                 if (id == '') return;
+                 var data = pItem.find('.DuyetAnh-Item-InputControl').serializeArray();
+                 data.push({ name: 'subAct', value: 'update' });
+                 data.push({ name: 'DUYETANH_PDV_ID', value: pdvId });
+                 data.push({ name: 'DUYETANH_ID', value: id });
+
+
+                 listAnhDaChon.html('');
+                 listAnh.find('.DuyetAnh-Item-Active').clone().appendTo(listAnhDaChon);
+                 listAnhDaChon.find('.ThuTu').sort(function (a, b) {
+                     return $(a).val() > $(b).val() ? 1 : -1;
+                 }, function () {
+                     return this.parentNode.parentNode;
+                 });
+
+                 $.ajax({
+                     url: savedUrl
+                     , type: 'POST'
+                     , data: data
+                    , success: function (_rs) {
+                    }
+                    , error: function (dt, errorThrown) {
+                        alert('request failed :' + errorThrown);
+                    }
+                 });
+                 
+             });
+             
+             listAnhDaChon.on('blur', '.DuyetAnh-Item-InputControl', function () {
+                 var item = $(this);
+                 var pItem = item.parent();
+                 var boxItem = item.parent().parent();
+                 var id = pItem.attr('data-id');
+                 if (id == '') return;
+                 
+                 var sysnItem = listAnh.find('.DuyetAnh-Item[data-id="' + id + '"]');
+                 var cloneParent = boxItem.clone();
+                 sysnItem.replaceWith($(cloneParent));
+
+                 var data = pItem.find('.DuyetAnh-Item-InputControl').serializeArray();
+                 data.push({ name: 'subAct', value: 'update' });
+                 data.push({ name: 'DUYETANH_PDV_ID', value: pdvId });
+                 data.push({ name: 'DUYETANH_ID', value: id });
+
+
+                 $.ajax({
+                     url: savedUrl
+                     , type: 'POST'
+                     , data: data
+                    , success: function (_rs) {
+
+                        listAnhDaChon.find('.ThuTu').sort(function (a, b) {
+                            return $(a).val() > $(b).val() ? 1 : -1;
+                        }, function () {
+                            return this.parentNode.parentNode;
+                        });
+
+                    }
+                    , error: function (dt, errorThrown) {
+                        alert('request failed :' + errorThrown);
+                    }
+                 });
+
+             });
+             
+             //Close FS
+             duyetAnhFs.find('.btnCloseFs').click(function () {
+                 duyetAnhList.show();
+                 duyetAnhFs.hide();
+             });
+             
+             chinhSua.find('.btnSavePhieuDichVu').click(function () {
+                 var btnSavePhieuDichVu = $(this);
+                 var url = btnSavePhieuDichVu.attr('data-src');
+                 var data = chinhSua.find(':input').serializeArray();
+                 data.push({ name: 'subAct', value: 'saveDuyetAnh' });
+                 $.ajax({
+                     url: url
+                     , type: 'POST'
+                     , data: data
+                    , success: function (rs) {
+                        if (rs == '0') {
+                        }
+                        else {
+                        }
+                    }
+                 });
+             });
+
+             duyetAnhFs.find('.viewFsBtnChon').click(function () {
+                 var id = duyetAnhFs.attr('data-id');
+                 if (id == '') return;
+                 var sysnItem = listAnh.find('.DuyetAnh-Item[data-id="' + id + '"]');
+                 sysnItem.find('.DuyetAnh-Item-AddBtn').click();
+             });
+             
+             duyetAnhFs.find('.viewFsBtnAnhBia').click(function () {
+                 var ten = duyetAnhFs.find('h3').html();
+                 var PTS_AnhBia = chinhSua.find('.PTS_AnhBia');
+                 PTS_AnhBia.val(ten);
+             });
+             duyetAnhFs.find('.viewFsBtnAnhPhong').click(function () {
+                 var ten = duyetAnhFs.find('h3').html();
+                 var PTS_AnhPhong = chinhSua.find('.PTS_AnhPhong');
+                 PTS_AnhPhong.val(ten);
+             });
+             duyetAnhFs.find('.viewFsBtnAnhBan').click(function () {
+                 var ten = duyetAnhFs.find('h3').html();
+                 var PTS_AnhBan = chinhSua.find('.PTS_AnhBan');
+                 PTS_AnhBan.val(ten);
+             });
+         }
     }
 }
+

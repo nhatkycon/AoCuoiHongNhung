@@ -433,9 +433,9 @@ namespace docsoft.entities
             return ByDm(DAL.con(),url,rewrite,sort,q,size,DM_ID);
         }
 
-        public static Pager<HangHoa> KhoVay(SqlConnection con, string url, bool rewrite, string sort, string q, int size, string DM_ID)
+        public static Pager<HangHoa> KhoVay(SqlConnection con, string url, bool rewrite, string sort, string q, int size, string DM_ID, string Gia)
         {
-            var obj = new SqlParameter[3];
+            var obj = new SqlParameter[4];
             if (!string.IsNullOrEmpty(sort))
             {
                 obj[0] = new SqlParameter("Sort", sort);
@@ -460,8 +460,39 @@ namespace docsoft.entities
             {
                 obj[2] = new SqlParameter("DM_ID", DBNull.Value);
             }
+            if (!string.IsNullOrEmpty(Gia))
+            {
+                obj[3] = new SqlParameter("Gia", Gia);
+            }
+            else
+            {
+                obj[3] = new SqlParameter("Gia", DBNull.Value);
+            }
             var pg = new Pager<HangHoa>(con, "sp_tblHangHoa_Pager_KhoVay_linhnx", "page", size, 10, rewrite, url, obj);
             return pg;
+        }
+
+        public static HangHoaCollection TimNhanh(string q, int Top)
+        {
+            var List = new HangHoaCollection();
+            var obj = new SqlParameter[2];
+            obj[0] = new SqlParameter("Top", Top);
+            if (!string.IsNullOrEmpty(q))
+            {
+                obj[1] = new SqlParameter("q", q);
+            }
+            else
+            {
+                obj[1] = new SqlParameter("q", DBNull.Value);
+            }
+            using (IDataReader rd = SqlHelper.ExecuteReader(DAL.con(), CommandType.StoredProcedure, "sp_tblHangHoa_Select_TimNhanh_linhnx", obj))
+            {
+                while (rd.Read())
+                {
+                    List.Add(getFromReader(rd));
+                }
+            }
+            return List;
         }
 
         #endregion

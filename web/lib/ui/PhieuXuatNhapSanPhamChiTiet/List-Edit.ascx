@@ -10,7 +10,7 @@
                         <i class="glyphicon glyphicon-chevron-down"></i>
                     </span>
                     <input data-PxnSpId="<%=PID %>" type="text" 
-                        data-cached="1" 
+                        data-cached="0" 
                         data-src="/lib/ajax/HangHoa/Default.aspx" 
                         data-savedUrl="/lib/ajax/XuatNhapSanPham/Default.aspx" 
                         class="form-control HH_Ten form-autocomplete-input-pxnSpCt" value=""/>

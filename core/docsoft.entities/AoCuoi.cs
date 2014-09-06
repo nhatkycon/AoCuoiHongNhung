@@ -1551,6 +1551,8 @@ namespace docsoft.entities
         #endregion
         #region Customs properties
 
+        public string FullName { get; set; }
+        public bool Selected { get; set; }
         #endregion
         public override BaseEntity getFromReader(IDataReader rd)
         {
@@ -1721,6 +1723,22 @@ namespace docsoft.entities
             obj[0] = new SqlParameter("PDV_ID", PDV_ID);
             using (IDataReader rd = SqlHelper.ExecuteReader(con, CommandType.StoredProcedure
                 , "sp_tblAoCuoi_DuyetAnh_Select_SelectByPdvId_linhnx", obj))
+            {
+                while (rd.Read())
+                {
+                    List.Add(getFromReader(rd));
+                }
+            }
+            return List;
+        }
+        public static DuyetAnhCollection SelectByPdvIdTen(SqlConnection con, string PDV_ID, string Ten)
+        {
+            var List = new DuyetAnhCollection();
+            var obj = new SqlParameter[2];
+            obj[0] = new SqlParameter("PDV_ID", PDV_ID);
+            obj[1] = new SqlParameter("Ten", Ten);
+            using (IDataReader rd = SqlHelper.ExecuteReader(con, CommandType.StoredProcedure
+                , "sp_tblAoCuoi_DuyetAnh_Select_SelectByPdvIdTen_linhnx", obj))
             {
                 while (rd.Read())
                 {
@@ -2269,6 +2287,8 @@ namespace docsoft.entities
         public String PTS_AnhBanQuyCach { get; set; }
         public String PTS_AnhBia { get; set; }
         public Boolean PTS_CD3D { get; set; }
+        public String PTS_AnhBiaMau { get; set; }
+        public String PTS_ThuMuc { get; set; }
         public Boolean HoanThanh { get; set; }
         public Boolean Voucher { get; set; }
         public String Voucher_Ma { get; set; }
@@ -2398,7 +2418,7 @@ namespace docsoft.entities
         public static PhieuDichVu Insert(PhieuDichVu item)
         {
             var Item = new PhieuDichVu();
-            var obj = new SqlParameter[64];
+            var obj = new SqlParameter[66];
             obj[0] = new SqlParameter("PDV_ID", item.ID);
             obj[1] = new SqlParameter("PDV_Ma", item.Ma);
             obj[2] = new SqlParameter("PDV_KH_ID", item.KH_ID);
@@ -2544,51 +2564,53 @@ namespace docsoft.entities
             obj[44] = new SqlParameter("PDV_PTS_AnhBanQuyCach", item.PTS_AnhBanQuyCach);
             obj[45] = new SqlParameter("PDV_PTS_AnhBia", item.PTS_AnhBia);
             obj[46] = new SqlParameter("PDV_PTS_CD3D", item.PTS_CD3D);
-            obj[47] = new SqlParameter("PDV_HoanThanh", item.HoanThanh);
-            obj[48] = new SqlParameter("PDV_Voucher", item.Voucher);
-            obj[49] = new SqlParameter("PDV_Voucher_Ma", item.Voucher_Ma);
-            obj[50] = new SqlParameter("PDV_NguoiTao", item.NguoiTao);
-            obj[51] = new SqlParameter("PDV_NguoiCapNhat", item.NguoiCapNhat);
+            obj[47] = new SqlParameter("PDV_PTS_AnhBiaMau", item.PTS_AnhBiaMau);
+            obj[48] = new SqlParameter("PDV_PTS_ThuMuc", item.PTS_ThuMuc);
+            obj[49] = new SqlParameter("PDV_HoanThanh", item.HoanThanh);
+            obj[50] = new SqlParameter("PDV_Voucher", item.Voucher);
+            obj[51] = new SqlParameter("PDV_Voucher_Ma", item.Voucher_Ma);
+            obj[52] = new SqlParameter("PDV_NguoiTao", item.NguoiTao);
+            obj[53] = new SqlParameter("PDV_NguoiCapNhat", item.NguoiCapNhat);
             if (item.NgayTao > DateTime.MinValue)
             {
-                obj[52] = new SqlParameter("PDV_NgayTao", item.NgayTao);
+                obj[54] = new SqlParameter("PDV_NgayTao", item.NgayTao);
             }
             else
             {
-                obj[52] = new SqlParameter("PDV_NgayTao", DBNull.Value);
+                obj[54] = new SqlParameter("PDV_NgayTao", DBNull.Value);
             }
             if (item.NgayCapNhat > DateTime.MinValue)
             {
-                obj[53] = new SqlParameter("PDV_NgayCapNhat", item.NgayCapNhat);
+                obj[55] = new SqlParameter("PDV_NgayCapNhat", item.NgayCapNhat);
             }
             else
             {
-                obj[53] = new SqlParameter("PDV_NgayCapNhat", DBNull.Value);
+                obj[55] = new SqlParameter("PDV_NgayCapNhat", DBNull.Value);
             }
-            obj[54] = new SqlParameter("PDV_Xoa", item.Xoa);
-            obj[55] = new SqlParameter("PDV_TrangThai", item.TrangThai);
-            obj[56] = new SqlParameter("PDV_Huy", item.Huy);
-            obj[57] = new SqlParameter("PDV_LyDoHuy", item.LyDoHuy);
+            obj[56] = new SqlParameter("PDV_Xoa", item.Xoa);
+            obj[57] = new SqlParameter("PDV_TrangThai", item.TrangThai);
+            obj[58] = new SqlParameter("PDV_Huy", item.Huy);
+            obj[59] = new SqlParameter("PDV_LyDoHuy", item.LyDoHuy);
             if (item.NgayHuy > DateTime.MinValue)
             {
-                obj[58] = new SqlParameter("PDV_NgayHuy", item.NgayHuy);
+                obj[60] = new SqlParameter("PDV_NgayHuy", item.NgayHuy);
             }
             else
             {
-                obj[58] = new SqlParameter("PDV_NgayHuy", DBNull.Value);
+                obj[60] = new SqlParameter("PDV_NgayHuy", DBNull.Value);
             }
-            obj[59] = new SqlParameter("PDV_NhanVienHuy", item.NhanVienHuy);
-            obj[60] = new SqlParameter("PDV_DuyetEkip", item.DuyetEkip);
+            obj[61] = new SqlParameter("PDV_NhanVienHuy", item.NhanVienHuy);
+            obj[62] = new SqlParameter("PDV_DuyetEkip", item.DuyetEkip);
             if (item.NgayDuyetEkip > DateTime.MinValue)
             {
-                obj[61] = new SqlParameter("PDV_NgayDuyetEkip", item.NgayDuyetEkip);
+                obj[63] = new SqlParameter("PDV_NgayDuyetEkip", item.NgayDuyetEkip);
             }
             else
             {
-                obj[61] = new SqlParameter("PDV_NgayDuyetEkip", DBNull.Value);
+                obj[63] = new SqlParameter("PDV_NgayDuyetEkip", DBNull.Value);
             }
-            obj[62] = new SqlParameter("PDV_NguoiDuyet", item.NguoiDuyet);
-            obj[63] = new SqlParameter("PDV_XoaAdm", item.XoaAdm);
+            obj[64] = new SqlParameter("PDV_NguoiDuyet", item.NguoiDuyet);
+            obj[65] = new SqlParameter("PDV_XoaAdm", item.XoaAdm);
 
             using (IDataReader rd = SqlHelper.ExecuteReader(DAL.con(), CommandType.StoredProcedure, "sp_tblAoCuoi_PhieuDichVu_Insert_InsertNormal_linhnx", obj))
             {
@@ -2603,7 +2625,7 @@ namespace docsoft.entities
         public static PhieuDichVu Update(PhieuDichVu item)
         {
             var Item = new PhieuDichVu();
-            var obj = new SqlParameter[64];
+            var obj = new SqlParameter[66];
             obj[0] = new SqlParameter("PDV_ID", item.ID);
             obj[1] = new SqlParameter("PDV_Ma", item.Ma);
             obj[2] = new SqlParameter("PDV_KH_ID", item.KH_ID);
@@ -2749,51 +2771,53 @@ namespace docsoft.entities
             obj[44] = new SqlParameter("PDV_PTS_AnhBanQuyCach", item.PTS_AnhBanQuyCach);
             obj[45] = new SqlParameter("PDV_PTS_AnhBia", item.PTS_AnhBia);
             obj[46] = new SqlParameter("PDV_PTS_CD3D", item.PTS_CD3D);
-            obj[47] = new SqlParameter("PDV_HoanThanh", item.HoanThanh);
-            obj[48] = new SqlParameter("PDV_Voucher", item.Voucher);
-            obj[49] = new SqlParameter("PDV_Voucher_Ma", item.Voucher_Ma);
-            obj[50] = new SqlParameter("PDV_NguoiTao", item.NguoiTao);
-            obj[51] = new SqlParameter("PDV_NguoiCapNhat", item.NguoiCapNhat);
+            obj[47] = new SqlParameter("PDV_PTS_AnhBiaMau", item.PTS_AnhBiaMau);
+            obj[48] = new SqlParameter("PDV_PTS_ThuMuc", item.PTS_ThuMuc);
+            obj[49] = new SqlParameter("PDV_HoanThanh", item.HoanThanh);
+            obj[50] = new SqlParameter("PDV_Voucher", item.Voucher);
+            obj[51] = new SqlParameter("PDV_Voucher_Ma", item.Voucher_Ma);
+            obj[52] = new SqlParameter("PDV_NguoiTao", item.NguoiTao);
+            obj[53] = new SqlParameter("PDV_NguoiCapNhat", item.NguoiCapNhat);
             if (item.NgayTao > DateTime.MinValue)
             {
-                obj[52] = new SqlParameter("PDV_NgayTao", item.NgayTao);
+                obj[54] = new SqlParameter("PDV_NgayTao", item.NgayTao);
             }
             else
             {
-                obj[52] = new SqlParameter("PDV_NgayTao", DBNull.Value);
+                obj[54] = new SqlParameter("PDV_NgayTao", DBNull.Value);
             }
             if (item.NgayCapNhat > DateTime.MinValue)
             {
-                obj[53] = new SqlParameter("PDV_NgayCapNhat", item.NgayCapNhat);
+                obj[55] = new SqlParameter("PDV_NgayCapNhat", item.NgayCapNhat);
             }
             else
             {
-                obj[53] = new SqlParameter("PDV_NgayCapNhat", DBNull.Value);
+                obj[55] = new SqlParameter("PDV_NgayCapNhat", DBNull.Value);
             }
-            obj[54] = new SqlParameter("PDV_Xoa", item.Xoa);
-            obj[55] = new SqlParameter("PDV_TrangThai", item.TrangThai);
-            obj[56] = new SqlParameter("PDV_Huy", item.Huy);
-            obj[57] = new SqlParameter("PDV_LyDoHuy", item.LyDoHuy);
+            obj[56] = new SqlParameter("PDV_Xoa", item.Xoa);
+            obj[57] = new SqlParameter("PDV_TrangThai", item.TrangThai);
+            obj[58] = new SqlParameter("PDV_Huy", item.Huy);
+            obj[59] = new SqlParameter("PDV_LyDoHuy", item.LyDoHuy);
             if (item.NgayHuy > DateTime.MinValue)
             {
-                obj[58] = new SqlParameter("PDV_NgayHuy", item.NgayHuy);
+                obj[60] = new SqlParameter("PDV_NgayHuy", item.NgayHuy);
             }
             else
             {
-                obj[58] = new SqlParameter("PDV_NgayHuy", DBNull.Value);
+                obj[60] = new SqlParameter("PDV_NgayHuy", DBNull.Value);
             }
-            obj[59] = new SqlParameter("PDV_NhanVienHuy", item.NhanVienHuy);
-            obj[60] = new SqlParameter("PDV_DuyetEkip", item.DuyetEkip);
+            obj[61] = new SqlParameter("PDV_NhanVienHuy", item.NhanVienHuy);
+            obj[62] = new SqlParameter("PDV_DuyetEkip", item.DuyetEkip);
             if (item.NgayDuyetEkip > DateTime.MinValue)
             {
-                obj[61] = new SqlParameter("PDV_NgayDuyetEkip", item.NgayDuyetEkip);
+                obj[63] = new SqlParameter("PDV_NgayDuyetEkip", item.NgayDuyetEkip);
             }
             else
             {
-                obj[61] = new SqlParameter("PDV_NgayDuyetEkip", DBNull.Value);
+                obj[63] = new SqlParameter("PDV_NgayDuyetEkip", DBNull.Value);
             }
-            obj[62] = new SqlParameter("PDV_NguoiDuyet", item.NguoiDuyet);
-            obj[63] = new SqlParameter("PDV_XoaAdm", item.XoaAdm);
+            obj[64] = new SqlParameter("PDV_NguoiDuyet", item.NguoiDuyet);
+            obj[65] = new SqlParameter("PDV_XoaAdm", item.XoaAdm);
 
             using (IDataReader rd = SqlHelper.ExecuteReader(DAL.con(), CommandType.StoredProcedure, "sp_tblAoCuoi_PhieuDichVu_Update_UpdateNormal_linhnx", obj))
             {
@@ -3128,6 +3152,14 @@ namespace docsoft.entities
             if (rd.FieldExists("PDV_PTS_CD3D"))
             {
                 Item.PTS_CD3D = (Boolean)(rd["PDV_PTS_CD3D"]);
+            }
+            if (rd.FieldExists("PDV_PTS_AnhBiaMau"))
+            {
+                Item.PTS_AnhBiaMau = (String)(rd["PDV_PTS_AnhBiaMau"]);
+            }
+            if (rd.FieldExists("PDV_PTS_ThuMuc"))
+            {
+                Item.PTS_ThuMuc = (String)(rd["PDV_PTS_ThuMuc"]);
             }
             if (rd.FieldExists("PDV_HoanThanh"))
             {

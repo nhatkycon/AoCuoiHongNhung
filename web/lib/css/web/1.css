@@ -147,3 +147,169 @@ ul,li, ol {
     text-decoration: none;
     background-color: #FFF;   
 }
+
+
+.DuyetAnh-View {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: black;
+}
+.DuyetAnh-View-List {
+    position: fixed;
+    top: 10px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+}
+.DuyetAnh-ToolBar {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 47px;
+}
+.DuyetAnh-View-Panel {
+    background-color: #FFF;
+    position: absolute;
+    top: 60px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    border: solid 1px #999;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.DuyetAnh-View-Body {
+    display: none;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+.DuyetAnh-View-Body.Show {
+    display: block;
+}
+
+.DuyetAnh-Item {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.DuyetAnh-Item .DuyetAnh-Item-Img {
+    width: 200px;
+    min-height: 120px;
+    background-color: #F5F5F5;
+    background-image: url(i/loading.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+    
+}
+.DuyetAnh-Item .DuyetAnh-Item-Ten {
+    padding: 4px 6px;
+    background-color: #ccc;
+    color: #000;
+}
+.DuyetAnh-Item .DuyetAnh-Item-Footer {
+    display: none;
+}
+.DuyetAnh-Item .glyphicon-remove {
+    display: none;
+}
+.DuyetAnh-Item .glyphicon-plus {
+    display: inline-block;
+}
+
+.DuyetAnh-Item-Active {
+    border: solid 1px red;
+}
+.DuyetAnh-Item-Active .DuyetAnh-Item-Img {
+}
+.DuyetAnh-Item-Active .DuyetAnh-Item-Ten {
+    padding: 4px 6px;
+    background-color: orange;
+    color: #000;
+}
+.DuyetAnh-Item-Active .DuyetAnh-Item-Footer {
+    display: block;
+    background-color: orange;
+}
+.DuyetAnh-Item-Active .glyphicon-remove {
+    display: none;
+}
+.DuyetAnh-Item-Active .glyphicon-remove {
+    display: inline-block;
+}
+.DuyetAnh-Item-Active .glyphicon-plus {
+    display: none;
+}
+.DuyetAnh-Item-GhiChu {
+}
+
+
+.DuyetAnh-View-Fs {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: black;
+    display: none;
+}
+.DuyetAnh-View-Fs-Carousel {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 80px;
+    background-color: #F2f2f2;
+}
+.DuyetAnh-View-Fs-Footer {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    height: 50px;
+    background-color: #000;
+    color: #FFF;
+}
+.DuyetAnh-View-Fs .carousel{
+    height: 100%;
+}
+.DuyetAnh-View-Fs .carousel-inner {
+    height: 100%;
+}
+.DuyetAnh-View-Fs .swipe {
+  overflow: hidden;
+  visibility: hidden;
+  position: relative;
+  height: 100%;
+}
+.DuyetAnh-View-Fs .swipe-wrap {
+  overflow: hidden;
+  position: relative;
+    height: 100%;
+}
+.DuyetAnh-View-Fs .swipe-wrap > div.item {
+    float:left;
+    width:100%;
+    height: 100% !important;
+    position: relative;
+    text-align: center;
+}
+.DuyetAnh-View-Fs .swipe-wrap > div.item img{
+    height: 100%;
+}
+.btnCloseFs {
+}

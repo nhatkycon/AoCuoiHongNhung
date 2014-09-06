@@ -14,5 +14,22 @@
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>
     </form>
+    <script type="text/javascript">
+        function PrintWindow() {
+            window.print();
+            CheckWindowState();
+        }
+
+        function CheckWindowState() {
+            if (document.readyState == "complete") {
+                window.close();
+            }
+            else {
+                setTimeout("CheckWindowState()", 100);
+            }
+        }
+
+        PrintWindow();
+</script>
 </body>
 </html>

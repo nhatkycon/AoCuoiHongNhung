@@ -147,8 +147,8 @@
 </table>
 <script type="text/javascript">
     function PrintWindow() {
-        //window.print();
-        //CheckWindowState();
+        window.print();
+        CheckWindowState();
     }
 
     function CheckWindowState() {

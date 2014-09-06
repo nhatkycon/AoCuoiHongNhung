@@ -12,10 +12,10 @@
         <input data-id="<%=Item.ID %>" type="text" class="form-control PhieuDichVuDichVu-ThemChiTiet-Input MoTa" name="MoTa" value="<%=Item.MoTa %>"/>
     </td>
     <td>
-        <input data-id="<%=Item.ID %>" type="text" class="form-control PhieuDichVuDichVu-ThemChiTiet-Input Gia" name="Gia" value="<%=Lib.TienVietNam(Item.Gia) %>"/>
+        <input data-id="<%=Item.ID %>" type="text" class="form-control PhieuDichVuDichVu-ThemChiTiet-Input Gia PhieuDichVuDichVu-ThemChiTiet-Input-El" name="Gia" value="<%=Lib.TienVietNam(Item.Gia) %>"/>
     </td>  
     <td>
-        <input data-id="<%=Item.ID %>" type="text" class="form-control PhieuDichVuDichVu-ThemChiTiet-Input SoLuong" name="SoLuong" value="<%=Item.SoLuong %>"/>
+        <input data-id="<%=Item.ID %>" type="text" class="form-control PhieuDichVuDichVu-ThemChiTiet-Input SoLuong PhieuDichVuDichVu-ThemChiTiet-Input-El" name="SoLuong" value="<%=Item.SoLuong %>"/>
     </td>
     <td class="input-group" style="width: 300px;">
             <span class="input-group-addon btn autocomplete-btn">

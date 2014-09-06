@@ -8,13 +8,18 @@
             <td valign="top" style="width: 180px;">
                 <%=LogoStr %>
             </td>            
-            <td valign="top" style="width: 200px;">
+            <td valign="top" >
+                <h1 style="text-align: center;">
+                    PHIẾU <br />DỊCH VỤ
+                </h1>
+            </td>            
+            <td valign="top" style="width: 150px;">
                 <table>
                     <tr>
                         <td style="width: 50px; text-align: right;">
                             Số:                
                         </td>
-                        <td style="width: 150px; font-weight: bold;">
+                        <td style="width: 100px; font-weight: bold;">
                             <%=Lib.FormatMa(Item.Ma) %>                
                         </td>
                     </tr>
@@ -38,9 +43,7 @@
             </td>
         </tr>
     </table>
-        <h1 style="text-align: center;">
-            PHIẾU DỊCH VỤ
-        </h1>
+        
     <table width="100%" cellpadding="5" cellspacing="0">
         <tr>
             <td style="text-align: right; width: 80px;">

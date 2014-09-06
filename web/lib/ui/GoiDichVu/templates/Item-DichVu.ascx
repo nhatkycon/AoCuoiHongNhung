@@ -8,7 +8,7 @@
     <td>
         <input data-id="<%=Item.ID %>" type="text" class="form-control GoiDichVu-ThemChiTiet-Input ThuTu" name="ThuTu" value="<%=Item.ThuTu %>"/>
     </td>
-    <td>
+    <td style="width: 120px;">
         <input data-id="<%=Item.ID %>" type="text" class="form-control GoiDichVu-ThemChiTiet-Input Gia" name="Gia" value="<%=Lib.TienVietNam(Item.Gia) %>"/>
     </td>
     <td>

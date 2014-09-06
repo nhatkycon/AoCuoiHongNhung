@@ -250,7 +250,7 @@
                 </div>
                 <div class="form-group">
                     <label for="CHUP_DaChuyenAnh" class="col-sm-2 control-label">Nhận ảnh thô:</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-2">
                         <input type="text" class="form-control" value="1" style="display: none;" name="CHUP_DaChuyenAnh_U"/>
                         <%if (Item.CHUP_DaChuyenAnh)
                         {%>
@@ -263,6 +263,10 @@
                         {%>
                             <input class="CHUP_DaChuyenAnh input-sm" id="Checkbox5" name="CHUP_DaChuyenAnh" type="checkbox"/>
                         <% } %>
+                    </div>
+                    <label for="PTS_ThuMuc" class="col-sm-2 control-label">Thư mục:</label>
+                    <div class="col-sm-6">
+                        <input id="PTS_ThuMuc" type="text" class="form-control PTS_ThuMuc" value="<%=Item.PTS_ThuMuc %>" name="PTS_ThuMuc"/>
                     </div>
                 </div>
             </div>
@@ -555,6 +559,12 @@
                     <div class="col-sm-2">
                         <input id="PTS_AnhBia" type="text" class="form-control PTS_AnhBia" value="<%=Item.PTS_AnhBia %>" name="PTS_AnhBia"/>
                     </div>
+                    <label for="PTS_AnhBiaMau" class="col-sm-2 control-label">màu bìa:</label>
+                    <div class="col-sm-2">
+                        <input id="PTS_AnhBiaMau" type="text" class="form-control PTS_AnhBiaMau" value="<%=Item.PTS_AnhBiaMau %>" name="PTS_AnhBiaMau"/>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="PTS_AnhPhong" class="col-sm-2 control-label">Ảnh phóng:</label>
                     <div class="col-sm-2">
                         <input id="PTS_AnhPhong" type="text" class="form-control PTS_AnhPhong" value="<%=Item.PTS_AnhPhong %>" name="PTS_AnhPhong"/>

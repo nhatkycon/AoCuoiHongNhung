@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="controls\CaptchaImage.cs" />
     <Compile Include="controls\Giohang.cs" />
+    <Compile Include="controls\ImageProcess.cs" />
     <Compile Include="controls\LinkGrap.cs" />
     <Compile Include="framework\Cache.cs" />
     <Compile Include="framework\Entities.cs" />
@@ -134,7 +135,6 @@
     <Compile Include="Json\Utilities\ValidationUtils.cs" />
     <Compile Include="linh.Common.cache.cs" />
     <Compile Include="linh.Common.cs" />
-    <Compile Include="controls\ImageProcess.cs" />
     <Compile Include="core\BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

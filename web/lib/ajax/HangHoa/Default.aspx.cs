@@ -182,8 +182,8 @@ public partial class lib_ajax_HangHoa_Default : basePage
                 #endregion
             case "search":
                 #region search
-                var pg = HangHoaDal.ByDm(null, false, "HH_NgayTao desc", q, 20, null);
-                rendertext(JavaScriptConvert.SerializeObject(pg.List), "text/javascript");
+                var pg = HangHoaDal.TimNhanh(q, 10);
+                rendertext(JavaScriptConvert.SerializeObject(pg), "text/javascript");
                 break;
                 #endregion
             default: break;

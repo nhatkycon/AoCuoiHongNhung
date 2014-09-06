@@ -60,7 +60,7 @@
                     Dịch vụ
                 </a>
             </p>
-            <div class="collapse in" id="DichVuPnl">
+            <div class="collapse" id="DichVuPnl">
                 <uc1:ListView runat="server" ID="DichVuList" />
             </div>
             
@@ -75,7 +75,7 @@
                 <div class="form-group">
                     <label for="CHUP_NhanVien_Ten" class="col-sm-2 control-label">Thợ ảnh:</label>
                     <div class="col-sm-2">
-                        <p class="form-control-static"><%=Item.CHUP_NhanVien %></p>
+                        <p class="form-control-static"><%=Item.CHUP_NhanVien_Ten %></p>
                     </div>
                     <label for="CHUP_NgayBatDau" class="col-sm-2 control-label">Thời gian:</label>
                     <div class="col-sm-2">
@@ -116,6 +116,10 @@
                         {%>
                             <input class="CHUP_DaChuyenAnh input-sm" id="Checkbox5"  disabled type="checkbox"/>
                         <% } %>
+                    </div>
+                    <label for="PTS_ThuMuc" class="col-sm-2 control-label">Thư mục:</label>
+                    <div class="col-sm-6">
+                        <input id="PTS_ThuMuc" type="text" class="form-control PTS_ThuMuc" value="<%=Item.PTS_ThuMuc %>" name="PTS_ThuMuc"/>
                     </div>
                 </div>
             </div>
@@ -187,6 +191,12 @@
                     <div class="col-sm-2">
                         <input id="PTS_AnhBia" type="text" class="form-control PTS_AnhBia" value="<%=Item.PTS_AnhBia %>" name="PTS_AnhBia"/>
                     </div>
+                    <label for="PTS_AnhBiaMau" class="col-sm-2 control-label">màu bìa:</label>
+                    <div class="col-sm-2">
+                        <input id="PTS_AnhBiaMau" type="text" class="form-control PTS_AnhBiaMau" value="<%=Item.PTS_AnhBiaMau %>" name="PTS_AnhBiaMau"/>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="PTS_AnhPhong" class="col-sm-2 control-label">Ảnh phóng:</label>
                     <div class="col-sm-2">
                         <input id="PTS_AnhPhong" type="text" class="form-control PTS_AnhPhong" value="<%=Item.PTS_AnhPhong %>" name="PTS_AnhPhong"/>

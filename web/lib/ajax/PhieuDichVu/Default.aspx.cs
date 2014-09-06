@@ -61,6 +61,8 @@ public partial class lib_ajax_PhieuDichVu_Default : basePage
         var PTS_AnhBia = Request["PTS_AnhBia"];
         var PTS_CD3D = Request["PTS_CD3D"];
         var PTS_CD3D_U = Request["PTS_CD3D_U"];
+        var PTS_AnhBiaMau = Request["PTS_AnhBiaMau"];
+        var PTS_ThuMuc = Request["PTS_ThuMuc"];
         var HoanThanh = Request["HoanThanh"];
         var HoanThanh_U = Request["HoanThanh_U"];
 
@@ -256,6 +258,8 @@ public partial class lib_ajax_PhieuDichVu_Default : basePage
                     {
                         item.PTS_NgayXemMaket = Convert.ToDateTime(PTS_NgayXemMaket, new CultureInfo("vi-vn"));
                     }
+                    item.PTS_AnhBiaMau = PTS_AnhBiaMau;
+                    item.PTS_ThuMuc = PTS_ThuMuc;
                     item.PTS_YeuCauKhachHang = PTS_YeuCauKhachHang;
                     item.PTS_AnhBia = PTS_AnhBia;
                     item.PTS_AnhPhong = PTS_AnhPhong;
@@ -375,6 +379,58 @@ public partial class lib_ajax_PhieuDichVu_Default : basePage
                         });
                         #endregion
                     }
+                    //SearchManager.Add(Ten, item.IndexNoiDung, item.IndexContent, Ten, item.ID.ToString(), item.Url, typeof(SuKien).Name);
+                    TimKiemDal.Add(item, item.ID);
+                    rendertext(item.ID.ToString());
+                }
+                break;
+
+                #endregion
+            case "saveDuyetAnh":
+                #region Lưu nhanh phiếu dịch vụ khi khách hàng duyệt ảnh
+
+                if (Security.IsAuthenticated())
+                {
+                    var item = PhieuDichVuDal.SelectById(DAL.con(), new Guid(Id));
+                    item.PTS_AnhBiaMau = PTS_AnhBiaMau;
+                    item.PTS_YeuCauKhachHang = PTS_YeuCauKhachHang;
+                    item.PTS_AnhBia = PTS_AnhBia;
+                    item.PTS_AnhPhong = PTS_AnhPhong;
+                    item.PTS_AnhPhongGhiChu = PTS_AnhPhongGhiChu;
+                    item.PTS_AnhBan = PTS_AnhBan;
+                    item.PTS_AnhBanQuyCach = PTS_AnhBanQuyCach;
+                    item.PTS_AnhBanGhiChu = PTS_AnhBanGhiChu;
+
+                    item.NgayCapNhat = DateTime.Now;
+                    item.NguoiCapNhat = Security.UserId;
+
+                    item = PhieuDichVuDal.Update(item);
+                    #region log
+                    LogDal.log(item, new Log()
+                    {
+                        Checked = false
+                        ,
+                        Info =
+                            string.Format("{1} sửa phiếu dịch vụ: {0}", item.MaStr,
+                                          Security.Username)
+                        ,
+                        NgayTao = DateTime.Now
+                        ,
+                        Username = Security.Username
+                        ,
+                        PRowId = item.ID
+                        ,
+                        PTen = item.MaStr
+                        ,
+                        RequestIp = Request.UserHostAddress
+                        ,
+                        RawUrl = refUrl
+                        ,
+                        LLOG_ID = 2
+                        ,
+                        Ten = "Sửa"
+                    });
+                    #endregion
                     //SearchManager.Add(Ten, item.IndexNoiDung, item.IndexContent, Ten, item.ID.ToString(), item.Url, typeof(SuKien).Name);
                     TimKiemDal.Add(item, item.ID);
                     rendertext(item.ID.ToString());
