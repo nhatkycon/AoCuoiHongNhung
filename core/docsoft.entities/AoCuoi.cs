@@ -3706,7 +3706,13 @@ namespace docsoft.entities
 
         public string HH_Ten { get; set; }
         public Int32 PDV_Ma { get; set; }
+        public Int32 TuVanVien { get; set; }
+        public string PDV_MaStr
+        {
+            get { return Lib.FormatMa(PDV_Ma); }
+        }
         public string NhanVien_Ten { get; set; }
+        public string TuVanVien_Ten { get; set; }
         #endregion
         public override BaseEntity getFromReader(IDataReader rd)
         {
@@ -3934,6 +3940,14 @@ namespace docsoft.entities
             {
                 Item.NhanVien_Ten = (String)(rd["NhanVien_Ten"]);
             }
+            if (rd.FieldExists("PDV_TuVanVien"))
+            {
+                Item.TuVanVien = (Int32)(rd["PDV_TuVanVien"]);
+            }
+            if (rd.FieldExists("PDV_TuVanVien_Ten"))
+            {
+                Item.TuVanVien_Ten = (String)(rd["PDV_TuVanVien_Ten"]);
+            }
             return Item;
         }
         #endregion
@@ -3953,6 +3967,31 @@ namespace docsoft.entities
             }
             return List;
         }
+
+        public static PhieuDichVuDichVuCollection SelectBaoCao(SqlConnection con, string TuNgay, string DenNgay, string NhanVien)
+        {
+            var List = new PhieuDichVuDichVuCollection();
+            var obj = new SqlParameter[3];
+            obj[0] = new SqlParameter("TuNgay", TuNgay);
+            obj[1] = new SqlParameter("DenNgay", DenNgay);
+            if (!string.IsNullOrEmpty(NhanVien))
+            {
+                obj[2] = new SqlParameter("NhanVien", NhanVien);
+            }
+            else
+            {
+                obj[2] = new SqlParameter("NhanVien", DBNull.Value);
+            }
+            using (IDataReader rd = SqlHelper.ExecuteReader(con, CommandType.StoredProcedure, "sp_tblAoCuoi_PhieuDichVuDichVu_Select_SelectBaoCao_linhnx", obj))
+            {
+                while (rd.Read())
+                {
+                    List.Add(getFromReader(rd));
+                }
+            }
+            return List;
+        }
+
         #endregion
     }
     #endregion

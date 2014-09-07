@@ -55,6 +55,9 @@ public partial class lib_ajax_PhieuDichVuDichVu_Default : basePage
                     if (!string.IsNullOrEmpty(PDVDV_NhanVien))
                     {
                         item.NhanVien = Convert.ToInt32(PDVDV_NhanVien);                        
+                    }else
+                    {
+                        item.NhanVien = Security.UserId;
                     }
                     ItemEdit.Item = item;
                     ItemEdit.Visible = true;

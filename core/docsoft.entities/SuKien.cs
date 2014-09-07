@@ -65,6 +65,7 @@ namespace docsoft.entities
         public String NhanVien_Ten { get; set; }
         public String DM_Ten { get; set; }
         public String KH_Ten { get; set; }
+        public int NhanVien_Id { get; set; }
         #endregion
         public override BaseEntity getFromReader(IDataReader rd)
         {
@@ -406,6 +407,10 @@ namespace docsoft.entities
             {
                 Item.PDV_Ma = (Int32)(rd["PDV_Ma"]);
             }
+            if (rd.FieldExists("SK_NhanVien_Id"))
+            {
+                Item.NhanVien_Id = (Int32)(rd["SK_NhanVien_Id"]);
+            }
             return Item;
         }
         #endregion
@@ -541,7 +546,44 @@ namespace docsoft.entities
             }
             return List;
         }
+        public static SuKienCollection SelectPhieuDichVuBaoCao(SqlConnection con, string tuNgay, string denNgay, string NhanVien_Id)
+        {
+            var List = new SuKienCollection();
+            var obj = new SqlParameter[3];
+            if (!string.IsNullOrEmpty(denNgay))
+            {
+                obj[0] = new SqlParameter("denNgay", denNgay);
+            }
+            else
+            {
+                obj[0] = new SqlParameter("denNgay", DBNull.Value);
+            }
 
+            if (!string.IsNullOrEmpty(tuNgay))
+            {
+                obj[1] = new SqlParameter("tuNgay", tuNgay);
+            }
+            else
+            {
+                obj[1] = new SqlParameter("tuNgay", DBNull.Value);
+            }
+            if (!string.IsNullOrEmpty(NhanVien_Id))
+            {
+                obj[2] = new SqlParameter("NhanVien_Id", NhanVien_Id);
+            }
+            else
+            {
+                obj[2] = new SqlParameter("NhanVien_Id", DBNull.Value);
+            }
+            using (IDataReader rd = SqlHelper.ExecuteReader(con, CommandType.StoredProcedure, "sp_tblSpaMgr_SuKien_Select_SelectPhieuDichVuBaoCao_linhnx", obj))
+            {
+                while (rd.Read())
+                {
+                    List.Add(getFromReader(rd));
+                }
+            }
+            return List;
+        }
         public static SuKienCollection SelectForCalendar(SqlConnection con, DateTime tuNgay, DateTime denNgay)
         {
             return SelectForCalendar(con,tuNgay,denNgay,null);
