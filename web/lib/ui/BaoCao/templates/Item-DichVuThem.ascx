@@ -13,7 +13,7 @@
     <td>
         <%=Item.PDV_Ma %>
     </td>
-    <td>
+    <td style="text-align: right;">
         <%=Lib.TienVietNam(Item.Tien) %>
     </td>
     <td>

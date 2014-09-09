@@ -26,16 +26,14 @@
         <%} %>
         <%if(!string.IsNullOrEmpty(Id)){ %>
             <div class="btn-group">
-              <a href="#" class="btn btn-danger">In</a>
+              <a target="_blank" href="/lib/pages/PhieuDichVu/In-PhieuDichVu.aspx?ID=<%=Item.ID %>" class="btn btn-danger">In</a>
               <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
                 <span class="caret"></span>
                 <span class="sr-only">Danh sách in</span>
               </button>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="/lib/pages/PhieuDichVu/In-HopDongDichVu.aspx?ID=<%=Item.ID %>">Hợp đồng</a></li>
-                <li><a href="/lib/pages/PhieuDichVu/In-PhieuDichVu.aspx?ID=<%=Item.ID %>">Phiếu dịch vụ</a></li>
-                <li class="divider"></li>
-                <li><a href="/lib/pages/PhieuDichVu/In-PhieuChonAnh.aspx?ID=<%=Item.ID %>">Phiếu chọn ảnh</a></li>
+                <li><a target="_blank" href="/lib/pages/PhieuDichVu/In-HopDongDichVu.aspx?ID=<%=Item.ID %>">Hợp đồng</a></li>
+                <li><a target="_blank" href="/lib/pages/PhieuDichVu/In-PhieuChonAnh.aspx?ID=<%=Item.ID %>">Phiếu chọn ảnh</a></li>
               </ul>
             </div>
         <%} %>
@@ -733,16 +731,14 @@
         <%} %>
         <%if(!string.IsNullOrEmpty(Id)){ %>
             <div class="btn-group">
-              <a href="#" class="btn btn-danger">In</a>
+              <a target="_blank" href="/lib/pages/PhieuDichVu/In-PhieuDichVu.aspx?ID=<%=Item.ID %>" class="btn btn-danger">In</a>
               <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
                 <span class="caret"></span>
                 <span class="sr-only">Danh sách in</span>
               </button>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="/lib/pages/PhieuDichVu/In-HopDongDichVu.aspx?ID=<%=Item.ID %>">Hợp đồng</a></li>
-                <li><a href="/lib/pages/PhieuDichVu/In-PhieuDichVu.aspx?ID=<%=Item.ID %>">Phiếu dịch vụ</a></li>
-                <li class="divider"></li>
-                <li><a href="/lib/pages/PhieuDichVu/In-PhieuChonAnh.aspx?ID=<%=Item.ID %>">Phiếu chọn ảnh</a></li>
+                <li><a target="_blank" href="/lib/pages/PhieuDichVu/In-HopDongDichVu.aspx?ID=<%=Item.ID %>">Hợp đồng</a></li>
+                <li><a target="_blank" href="/lib/pages/PhieuDichVu/In-PhieuChonAnh.aspx?ID=<%=Item.ID %>">Phiếu chọn ảnh</a></li>
               </ul>
             </div>
         <%} %>
@@ -762,6 +758,11 @@
         Phiếu thu
     </h3>
     <div class="panel panel-default">
+        <div class="panel-heading">
+            <a class="btn btn-primary" href="/lib/pages/ThuChi/Add-Thu.aspx?PDV_ID=<%=Item.ID %>">
+                Thêm phiếu thu
+            </a>
+        </div>
         <div class="panel-body">
             <uc1:ListPhieuDichVuView runat="server" ID="ListPhieuDichVu" />
         </div>

@@ -11,8 +11,27 @@
     data-list="/lib/pages/ChoThueVay/"
     >
     <div class="panel-heading">
-       <uc1:AddTask_1 AddUrl="/lib/pages/ChoThueVay/Add.aspx" ListUrl="/lib/pages/ChoThueVay/Default.aspx" 
-           runat="server" id="AddTask" />               
+       <uc1:AddTask_1 AddUrl="/lib/pages/ChoThueVay/Add.aspx" 
+           ListUrl="/lib/pages/ChoThueVay/Default.aspx" 
+           runat="server" id="AddTask" />   
+        <%if(!string.IsNullOrEmpty(Id)){ %>
+            <div class="btn-group">
+              <a target="_blank" href="/lib/pages/ChoThueVay/Print.aspx?ID=<%=Item.ID %>" class="btn btn-danger">In</a>
+              <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+                <span class="sr-only">Danh sách in</span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                  <li>
+                    <a target="_blank" href="/lib/pages/ChoThueVay/HopDong-In.aspx?ID=<%=Item.ID %>" target="_blank">Hợp đồng</a>                      
+                  </li>
+                  <li>
+                    <a target="_blank" href="/lib/pages/ChoThueVay/ThanhLy-In.aspx?ID=<%=Item.ID %>" target="_blank">Thanh lý</a>                      
+                  </li>
+              </ul>
+            </div>
+        <%} %>
+        
     </div>
     <div class="panel-body">
         <div class="form-horizontal" role="form">
@@ -206,6 +225,23 @@
     <div class="panel-footer">
         <uc1:AddTask_1 AddUrl="/lib/pages/ChoThueVay/Add.aspx" ListUrl="/lib/pages/ChoThueVay/Default.aspx" 
            runat="server" id="AddTask1" />
+        <%if(!string.IsNullOrEmpty(Id)){ %>
+            <div class="btn-group">
+              <a target="_blank" href="/lib/pages/ChoThueVay/Print.aspx?ID=<%=Item.ID %>" class="btn btn-danger">In</a>
+              <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+                <span class="sr-only">Danh sách in</span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                  <li>
+                    <a target="_blank" href="/lib/pages/ChoThueVay/HopDong-In.aspx?ID=<%=Item.ID %>" target="_blank">Hợp đồng</a>                      
+                  </li>
+                  <li>
+                    <a target="_blank" href="/lib/pages/ChoThueVay/ThanhLy-In.aspx?ID=<%=Item.ID %>" target="_blank">Thanh lý</a>                      
+                  </li>
+              </ul>
+            </div>
+        <%} %>
     </div>
 </div>
 

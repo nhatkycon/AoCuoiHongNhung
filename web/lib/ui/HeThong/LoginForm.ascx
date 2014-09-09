@@ -5,7 +5,7 @@
             <h2 class="form-signin-heading">Đăng nhập</h2>
             <asp:TextBox ID="Username" runat="server" CssClass="form-control" placeholder="Username" required autofocus></asp:TextBox>
             <asp:TextBox ID="Pwd" TextMode="Password" CssClass="form-control" runat="server" placeholder="Mật khẩu" required></asp:TextBox>
-            <div style="display: none;" class="checkbox">
+            <div style="" class="checkbox">
                 <label>        
                 <asp:CheckBox runat="server" ID="ckb"/> Ghi nhớ
             </label>

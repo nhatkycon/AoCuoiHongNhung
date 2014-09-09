@@ -1,4 +1,5 @@
 ﻿using System;
+using docsoft;
 using docsoft.entities;
 using linh.core.dal;
 public partial class lib_pages_ThuChi_Add_Thu : System.Web.UI.Page
@@ -18,6 +19,8 @@ public partial class lib_pages_ThuChi_Add_Thu : System.Web.UI.Page
             if (string.IsNullOrEmpty(id))
             {
                 Item = ThuChiDal.SelectByDraff(con, true);
+                Item.NguoiTao = Security.UserId;
+                Item.NguoiTao_Ten = Security.Ten;
                 if (khId!= null && khId.Length >= 36)
                 {
                     khId = khId.Substring(khId.LastIndexOf(',') + 1);

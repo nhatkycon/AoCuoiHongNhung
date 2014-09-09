@@ -16,7 +16,7 @@
           {%>
             <tr>
                 <td>
-                    <%=d.ToString("dd") %>
+                    <%=d.Day == 01 ? d.ToString("dd/MM") : d.ToString("dd") %>
                 </td>
                 <% foreach (var item in Members)
                    {%>

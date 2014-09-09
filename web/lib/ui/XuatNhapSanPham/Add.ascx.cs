@@ -21,8 +21,6 @@ public partial class lib_ui_XuatNhapSanPham_Add : System.Web.UI.UserControl
         }
         AddTask.EditAble = Item.NguoiTao == Security.UserId;
         AddTask1.EditAble = Item.NguoiTao == Security.UserId;
-        AddTask.PrintUrl = Item.UrlPrint;
-        AddTask1.PrintUrl = Item.UrlPrint;
 
         ListEdit.PID = Item.ID.ToString();
         ListEdit.List = List;

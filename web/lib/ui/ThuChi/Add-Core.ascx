@@ -80,7 +80,7 @@
                     </div>
                 </div>
                 <div class="col-sm-2">
-                    <%if(Item.PDV_ID!=Guid.Empty){ %>
+                    <%if(Item.PBH_ID!=Guid.Empty){ %>
                         <a class="btn btn-link" href="/lib/pages/PhieuBaoHong/Add.aspx?ID=<%=Item.PBH_ID %>&ret=<%=Server.UrlEncode(Request.Url.PathAndQuery) %>">
                             <i class="glyphicon glyphicon-info-sign"></i>
                         </a>

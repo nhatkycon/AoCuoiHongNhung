@@ -10,8 +10,8 @@ public partial class lib_pages_BaoCao_ChamCong : System.Web.UI.Page
     {
         var d = DateTime.Now;
 
-        var dauThang = new DateTime(d.Year, d.Month, 1).AddMonths(-1);
-        var cuoiThang = new DateTime(d.Year, d.Month, 1);
+        var dauThang = new DateTime(d.Year, d.Month, 1);
+        var cuoiThang = new DateTime(d.Year, d.Month, 1).AddMonths(1).AddDays(-1);
         var tuNgayStr = Request["TuNgay"];
         var denNgayStr = Request["DenNgay"];
         if (string.IsNullOrEmpty(tuNgayStr))

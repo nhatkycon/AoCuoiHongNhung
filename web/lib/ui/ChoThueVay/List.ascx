@@ -11,6 +11,18 @@
                 KH
             </th>
             <th>
+                Tổng
+            </th>
+            <th>
+                Đặt cọc
+            </th>
+            <th>
+                Thanh toán
+            </th>
+            <th>
+                Còn nợ
+            </th>
+            <th>
                 Ngày xuất
             </th>      
             <th>

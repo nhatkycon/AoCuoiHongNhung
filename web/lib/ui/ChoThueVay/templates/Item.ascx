@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Item.ascx.cs" Inherits="lib_ui_ChoThueVay_templates_Item" %>
+<%@ Import Namespace="linh.common" %>
 <tr>
     <td class="">
         <a href="/lib/pages/ChoThueVay/Add.aspx?ID=<%=Item.ID %>">
@@ -7,6 +8,18 @@
     </td>
     <td>
         <%=Item.KH_Ten %>
+    </td>
+    <td style="text-align:right;">
+        <%=Lib.TienVietNam(Item.Tong) %>
+    </td>
+    <td style="text-align:right;">
+        <%=Lib.TienVietNam(Item.DatCong) %>
+    </td>
+    <td style="text-align:right;">
+        <%=Lib.TienVietNam(Item.X_ThanhToan) %>
+    </td>
+    <td style="text-align:right;">
+        <%=Lib.TienVietNam(Item.X_ConNo) %>
     </td>
     <td>
         <%if(Item.NgayBatDau != DateTime.MinValue){ %>

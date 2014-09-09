@@ -586,8 +586,8 @@ public partial class lib_ajax_PhieuDichVu_Default : basePage
                 #endregion
             case "search":
                 #region search
-                var pg = PhieuDichVuDal.pagerNormal(DAL.con(), null, false, "PDV_Ma desc", q, 20, null);
-                rendertext(JavaScriptConvert.SerializeObject(pg.List), "text/javascript");
+                var pg = PhieuDichVuDal.TimNhanh(DAL.con(),  q, "10");
+                rendertext(JavaScriptConvert.SerializeObject(pg), "text/javascript");
                 break;
                 #endregion
             default: break;

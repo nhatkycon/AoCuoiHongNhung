@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using docsoft;
 using docsoft.entities;
 using linh.core.dal;
 
@@ -21,7 +22,9 @@ public partial class lib_pages_PhieuDichVu_Add : System.Web.UI.Page
                 Item = PhieuDichVuDal.SelectDraff(con);
                 Item.Ma = Item.Ma == 0 ? 1 : Item.Ma  + 1;
                 Item.ID = Guid.NewGuid();
-                
+                Item.TuVanVien = Security.UserId;
+                Item.TuVanVien_Ten = Security.Ten;
+
             }
             else
             {

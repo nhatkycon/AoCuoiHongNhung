@@ -1117,6 +1117,32 @@ namespace docsoft.entities
             }
             return List;
         }
+        public static Pager<ChoThueVay> pagerBaoCao(SqlConnection con, string url, bool rewrite, string sort, string q, int size
+           , string TuNgay
+           , string DenNgay
+           )
+        {
+            var obj = new SqlParameter[4];
+            obj[0] = new SqlParameter("Sort", sort);
+            if (!string.IsNullOrEmpty(TuNgay))
+            {
+                obj[2] = new SqlParameter("TuNgay", TuNgay);
+            }
+            else
+            {
+                obj[2] = new SqlParameter("TuNgay", DBNull.Value);
+            }
+            if (!string.IsNullOrEmpty(DenNgay))
+            {
+                obj[3] = new SqlParameter("DenNgay", DenNgay);
+            }
+            else
+            {
+                obj[3] = new SqlParameter("DenNgay", DBNull.Value);
+            }
+            var pg = new Pager<ChoThueVay>(con, "sp_tblAoCuoi_ChoThueVay_Pager_BaoCao_linhnx", "page", size, 10, rewrite, url, obj);
+            return pg;
+        }
         #endregion
     }
     #endregion
@@ -3670,6 +3696,73 @@ namespace docsoft.entities
             }
             var pg = new Pager<PhieuDichVu>(con, "sp_tblAoCuoi_PhieuDichVu_Pager_DuyetEkip_linhnx", "page", size, 10, rewrite, url, obj);
             return pg;
+        }
+
+        public static Pager<PhieuDichVu> pagerBaoCao(SqlConnection con, string url, bool rewrite, string sort, string q, int size
+            , string TuNgay
+            , string DenNgay
+            )
+        {
+            var obj = new SqlParameter[10];
+            obj[0] = new SqlParameter("Sort", sort);
+            if (!string.IsNullOrEmpty(q))
+            {
+                obj[1] = new SqlParameter("q", q);
+            }
+            else
+            {
+                obj[1] = new SqlParameter("q", DBNull.Value);
+            }
+            if (!string.IsNullOrEmpty(TuNgay))
+            {
+                obj[2] = new SqlParameter("TuNgay", TuNgay);
+            }
+            else
+            {
+                obj[2] = new SqlParameter("TuNgay", DBNull.Value);
+            }
+            if (!string.IsNullOrEmpty(DenNgay))
+            {
+                obj[3] = new SqlParameter("DenNgay", DenNgay);
+            }
+            else
+            {
+                obj[3] = new SqlParameter("DenNgay", DBNull.Value);
+            }
+            var pg = new Pager<PhieuDichVu>(con, "sp_tblAoCuoi_PhieuDichVu_Pager_pagerBaoCao_linhnx", "page", size, 10, rewrite, url, obj);
+            return pg;
+        }
+
+        public static List<PhieuDichVu> TimNhanh(SqlConnection con, string q, string size
+           )
+        {
+            var obj = new SqlParameter[2];
+            if (!string.IsNullOrEmpty(q))
+            {
+                obj[1] = new SqlParameter("q", q);
+            }
+            else
+            {
+                obj[1] = new SqlParameter("q", DBNull.Value);
+            }
+            if (!string.IsNullOrEmpty(size))
+            {
+                obj[0] = new SqlParameter("size", size);
+            }
+            else
+            {
+                obj[0] = new SqlParameter("size", DBNull.Value);
+            }
+            var List = new PhieuDichVuCollection();
+            using (IDataReader rd = SqlHelper.ExecuteReader(DAL.con(), CommandType.StoredProcedure, "sp_tblAoCuoi_PhieuDichVu_Select_TimNhanh_linhnx", obj))
+            {
+                while (rd.Read())
+                {
+                    List.Add(getFromReader(rd));
+                }
+            }
+            return List;
+
         }
 
         #endregion

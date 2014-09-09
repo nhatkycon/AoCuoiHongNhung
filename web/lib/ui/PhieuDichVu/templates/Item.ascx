@@ -18,7 +18,7 @@
         <%=Lib.TienVietNam(Item.DatCoc) %>
     </td>
     <td>
-        <%=Lib.TienVietNam(Item.ConNo) %>
+        <%=Lib.TienVietNam(Item.X_ConNo) %>
     </td>
     <td>
         <%if (Item.CHUP_NgayBatDau != DateTime.MinValue){ %>
